@@ -1,0 +1,1435 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+CAassignment.exe -- emu8086 assembler version: 4.08  
+ 
+[ 20/12/2024  --  10:34:15 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .8086
+[   2]        :                                       .MODEL SMALL
+[   3]        :                                       
+[   4]        :                                       .DATA
+[   5]        :                                       
+[   6]    0000: 0A 0D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   menu1 db 10,13,   "============================================================"
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D                               
+[   7]    003E: 0A 0D 2A 20 43 4F 44 45 20 2A 20 46   db 10,13,   "* CODE * FISHES    * WEIGHT(KG) * PRICES (RM) * QUANTITIES *"
+                49 53 48 45 53 20 20 20 20 2A 20 57 
+                45 49 47 48 54 28 4B 47 29 20 2A 20 
+                50 52 49 43 45 53 20 28 52 4D 29 20 
+                2A 20 51 55 41 4E 54 49 54 49 45 53 
+                20 2A                               
+[   8]    007C: 0A 0D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   db 10,13,   "============================================================$"
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 24                            
+[   9]    00BB: 0A 0D 20 20 41 20 20 20 20 20 20 43   fishA db 10,13,   "  A      Catfish        37kg      RM15.00               $"
+                61 74 66 69 73 68 20 20 20 20 20 20 
+                20 20 33 37 6B 67 20 20 20 20 20 20 
+                52 4D 31 35 2E 30 30 20 20 20 20 20 
+                20 20 20 20 20 20 20 20 20 20 24    
+[  10]    00F6: 0A 0D 20 20 42 20 20 20 20 20 20 43   fishB db 10,13,   "  B      Cod fish       40kg      RM12.00               $"
+                6F 64 20 66 69 73 68 20 20 20 20 20 
+                20 20 34 30 6B 67 20 20 20 20 20 20 
+                52 4D 31 32 2E 30 30 20 20 20 20 20 
+                20 20 20 20 20 20 20 20 20 20 24    
+[  11]    0131: 0A 0D 20 20 43 20 20 20 20 20 20 54   fishC db 10,13,   "  C      Tilopie        34kg      RM10.00               $"
+                69 6C 6F 70 69 65 20 20 20 20 20 20 
+                20 20 33 34 6B 67 20 20 20 20 20 20 
+                52 4D 31 30 2E 30 30 20 20 20 20 20 
+                20 20 20 20 20 20 20 20 20 20 24    
+[  12]        :                                       
+[  13]    016C: 0A 0D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   menu2 db 10,13,         "===================================================================="
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D       
+[  14]    01B2: 0A 0D 2A 20 43 4F 44 45 20 2A 20 46   db 10,13,         "* CODE * FISHES    * WEIGHT(KG) * PRICES (RM) * QUANTITIES IN-CART *"
+                49 53 48 45 53 20 20 20 20 2A 20 57 
+                45 49 47 48 54 28 4B 47 29 20 2A 20 
+                50 52 49 43 45 53 20 28 52 4D 29 20 
+                2A 20 51 55 41 4E 54 49 54 49 45 53 
+                20 49 4E 2D 43 41 52 54 20 2A       
+[  15]    01F8: 0A 0D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   db 10,13,         "====================================================================$"
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 
+                3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 24    
+[  16]    023F: 0A 0D 20 20 41 20 20 20 20 20 20 43   cartedfishA db 10,13,   "  A      Catfish        37kg      RM15.00                       $"
+                61 74 66 69 73 68 20 20 20 20 20 20 
+                20 20 33 37 6B 67 20 20 20 20 20 20 
+                52 4D 31 35 2E 30 30 20 20 20 20 20 
+                20 20 20 20 20 20 20 20 20 20 20 20 
+                20 20 20 20 20 20 24                
+[  17]    0282: 0A 0D 20 20 42 20 20 20 20 20 20 43   cartedfishB db 10,13,   "  B      Cod fish       40kg      RM12.00                       $"
+                6F 64 20 66 69 73 68 20 20 20 20 20 
+                20 20 34 30 6B 67 20 20 20 20 20 20 
+                52 4D 31 32 2E 30 30 20 20 20 20 20 
+                20 20 20 20 20 20 20 20 20 20 20 20 
+                20 20 20 20 20 20 24                
+[  18]    02C5: 0A 0D 20 20 43 20 20 20 20 20 20 54   cartedfishC db 10,13,   "  C      Tilopie        34kg      RM10.00                       $"
+                69 6C 6F 70 69 65 20 20 20 20 20 20 
+                20 20 33 34 6B 67 20 20 20 20 20 20 
+                52 4D 31 30 2E 30 30 20 20 20 20 20 
+                20 20 20 20 20 20 20 20 20 20 20 20 
+                20 20 20 20 20 20 24                
+[  19]        :                                       
+[  20]    0308: 0A 0D 52 65 6D 6F 76 65 20 61 6E 20   menu3 db 10,13,         "Remove an order, followed by the code of the fish$"
+                6F 72 64 65 72 2C 20 66 6F 6C 6C 6F 
+                77 65 64 20 62 79 20 74 68 65 20 63 
+                6F 64 65 20 6F 66 20 74 68 65 20 66 
+                69 73 68 24                         
+[  21]        :                                       
+[  22]    033C: 00                                    pageid db 0
+[  23]        :                                       
+[  24]    033D: 00                                    quantityA db 0
+[  25]    033E: 00                                    quantityB db 0
+[  26]    033F: 00                                    quantityC db 0
+[  27]        :                                       
+[  28]    0340: 00                                    CustomerBuyA db 0
+[  29]    0341: 00                                    CustomerBuyB db 0
+[  30]    0342: 00                                    CustomerBuyC db 0
+[  31]        :                                       
+[  32]    0343: 00                                    RemoveQuantityA db 0
+[  33]    0344: 00                                    RemoveQuantityB db 0
+[  34]    0345: 00                                    RemoveQuantityC db 0
+[  35]        :                                       
+[  36]    0346: 00                                    CurrentQuantity db 0
+[  37]    0347: 00                                    SelectedVariable db 0
+[  38]    0348: 00                                    verifyquantityforeach db 0
+[  39]        :                                       
+[  40]    0349: 00                                    totalquantity db 0
+[  41]        :                                       
+[  42]    034A: 00                                    quantitydigit db 0
+[  43]        :                                       
+[  44]    034B: 00                                    setquantitydigit db 0
+[  45]    034C: 00                                    quantitydigitcount db 0
+[  46]        :                                       
+[  47]    034D: 07                                    quantitydiscount db 7 ;Requirend 7 quantites for discount
+[  48]    034E: 00                                    DetectQuantityDiscount db 0
+[  49]    034F: 00                                    isMember db 0
+[  50]    0350: 14                                    membersdiscount db 20
+[  51]        :                                       
+[  52]        :                                       
+[  53]        :                                       
+[  54]        :                                       ;qrcode db 13,10,              "####### ##      # #######"
+[  55]        :                                       ;```````db 13,10,              "#     #         # #     #"
+[  56]        :                                       ;       db 13,10,              "# ### # #  ### #  # ### #"
+[  57]        :                                       ;       db 13,10,              "# ### # ## ## #   # ### #"
+[  58]        :                                       ;       db 13,10,              "# ### # ####   #  # ### #"
+[  59]        :                                       ;       db 13,10,              "#     #  #  ##    #     #"
+[  60]        :                                       ;       db 13,10,              "####### # # # # # #######"
+[  61]        :                                       ;       db 13,10,              "        # #    #         "         ;Overlapped due to my laptop performance, if yall want to try out, change the "transaction" to qrcode at line 1142th
+[  62]        :                                       ;       db 13,10,              "####  # #   # # ##  ### #"
+[  63]        :                                       ;       db 13,10,              "   #  # #    # #  #   #  "
+[  64]        :                                       ;       db 13,10,              " #### ##   ###    ###    "
+[  65]        :                                       ;       db 13,10,              " ####  #   # ##########  "
+[  66]        :                                       ;       db 13,10,              "  #  ##  #  ## # #### ###"
+[  67]        :                                       ;       db 13,10,              "    ##  ### #  ## ###   #"
+[  68]        :                                       ;       db 13,10,              "# #  ##     ## ##  # ## "
+[  69]        :                                       ;       db 13,10,              "# ###   ##  #   #####   #"
+[  70]        :                                       ;       db 13,10,              "   ####  #  ## ##########"
+[  71]        :                                       ;       db 13,10,              "        ##  ### #   # # #"
+[  72]        :                                       ;       db 13,10,             "#######      ## # # # ###"
+[  73]        :                                       ;       db 13,10,              "#     #   # #   #   #  # "
+[  74]        :                                       ;       db 13,10,              "# ### #  ##     ###### ##"
+[  75]        :                                       ;       db 13,10,              "# ### # ## # ##  ## #####"
+[  76]        :                                       ;       db 13,10,              "# ### # #  ## ##  # # ## "
+[  77]        :                                       ;       db 13,10,              "#     # #  ##### #  # #  "
+[  78]        :                                       ;       db 13,10,              "####### ###   #   #######$"
+[  79]        :                                       
+[  80]        :                                       
+[  81]    0351: 0F                                    priceA db 15
+[  82]    0352: 0C                                    priceB db 12
+[  83]    0353: 0A                                    priceC db 10
+[  84]        :                                       
+[  85]    0354: 00                                    TotalPriceA db 0
+[  86]    0355: 00                                    TotalPriceB db 0
+[  87]    0356: 00                                    TotalPriceC db 0
+[  88]    0357: 00                                    TotalTotalPrice db 0
+[  89]        :                                       
+[  90]    0358: 30 30 30 30 24 00 00 00               TotalPriceDigits dw "0000$",0
+[  91]        :                                       
+[  92]    0360: 2E 30 30 24                           decimalPrice db ".00$"
+[  93]        :                                       
+[  94]        :                                       
+[  95]    0364: 0A 0D 24                              newline db 10,13, "$"
+[  96]        :                                       
+[  97]    0367: 07                                    refresh db 7
+[  98]        :                                       
+[  99]    0368: 0A 0D 45 6E 74 65 72 20 74 68 65 20   prom1 db 10,13,"Enter the code of fish you prefer to order(Input 'X' for exit, Input 'Z' to proceed order.): $"
+                63 6F 64 65 20 6F 66 20 66 69 73 68 
+                20 79 6F 75 20 70 72 65 66 65 72 20 
+                74 6F 20 6F 72 64 65 72 28 49 6E 70 
+                75 74 20 27 58 27 20 66 6F 72 20 65 
+                78 69 74 2C 20 49 6E 70 75 74 20 27 
+                5A 27 20 74 6F 20 70 72 6F 63 65 65 
+                64 20 6F 72 64 65 72 2E 29 3A 20 24 
+                                                    
+[ 100]        :                                       
+[ 101]    03C8: 0A 0D 45 6E 74 65 72 20 74 68 65 20   prom2 db 10,13,"Enter the quantity: $"
+                71 75 61 6E 74 69 74 79 3A 20 24    
+[ 102]        :                                       
+[ 103]    03DF: 0A 0D 45 6E 74 65 72 20 74 68 65 20   prom3 db 10,13,"Enter the code of ordered fish you prefer to removed(Press 'Z' return menu page.): $"
+                63 6F 64 65 20 6F 66 20 6F 72 64 65 
+                72 65 64 20 66 69 73 68 20 79 6F 75 
+                20 70 72 65 66 65 72 20 74 6F 20 72 
+                65 6D 6F 76 65 64 28 50 72 65 73 73 
+                20 27 5A 27 20 72 65 74 75 72 6E 20 
+                6D 65 6E 75 20 70 61 67 65 2E 29 3A 
+                20 24                               
+[ 104]        :                                       
+[ 105]    0435: 0A 0D 45 6E 74 65 72 20 72 65 6D 6F   prom4 db 10,13,"Enter remove quantity for selected fish: $"
+                76 65 20 71 75 61 6E 74 69 74 79 20 
+                66 6F 72 20 73 65 6C 65 63 74 65 64 
+                20 66 69 73 68 3A 20 24             
+[ 106]        :                                       
+[ 107]    0461: 52 4D 20 24                           RM db "RM $"
+[ 108]        :                                       
+[ 109]    0465: 0D 0A 54 6F 74 61 6C 20 56 61 6C 75   totalvalue db 13,10,"Total Value: $"
+                65 3A 20 24                         
+[ 110]    0475: 0D 0A 54 6F 74 61 6C 20 50 72 69 63   totalprice db 13,10,"Total Price: $"
+                65 3A 20 24                         
+[ 111]    0485: 0D 0A 44 69 73 63 6F 75 6E 74 20 20   discountmsg db 13,10,"Discount   : $"
+                3A 20 24                            
+[ 112]        :                                       
+[ 113]    0494: 0D 0A 50 72 6F 63 65 65 64 20 74 6F   payment db 13,10,"Proceed to pay?(Y/N) | Remove an item(X)$"
+                20 70 61 79 3F 28 59 2F 4E 29 20 7C 
+                20 52 65 6D 6F 76 65 20 61 6E 20 69 
+                74 65 6D 28 58 29 24                
+[ 114]        :                                       
+[ 115]    04BF: 0D 0A 41 72 65 20 79 6F 75 20 61 20   Memberships db 13,10,"Are you a Member (Y/N): $"
+                4D 65 6D 62 65 72 20 28 59 2F 4E 29 
+                3A 20 24                            
+[ 116]    04DA: 0D 0A 4D 65 6D 62 65 72 73 68 69 70   MemberDis db 13,10,"Membership Discount: RM0020.00$"
+                20 44 69 73 63 6F 75 6E 74 3A 20 52 
+                4D 30 30 32 30 2E 30 30 24          
+[ 117]        :                                       
+[ 118]    04FB: 0D 0A 51 75 61 6E 74 69 74 79 20 44   QuantityDis db 13,10,"Quantity Discount: RM0020.00$"
+                69 73 63 6F 75 6E 74 3A 20 52 4D 30 
+                30 32 30 2E 30 30 24                
+[ 119]        :                                       
+[ 120]        :                                       
+[ 121]    051A: 0D 0A 5B 49 4E 53 45 52 54 20 51 52   transaction db 13,10,"[INSERT QR CODE HERE]$"
+                20 43 4F 44 45 20 48 45 52 45 5D 24 
+                                                    
+[ 122]    0532: 0D 0A 54 68 61 6E 6B 20 59 6F 75 21   bye db 13,10,"Thank You! Please Come Again!$"
+                20 50 6C 65 61 73 65 20 43 6F 6D 65 
+                20 41 67 61 69 6E 21 24             
+[ 123]        :                                       
+[ 124]        :                                       
+[ 125]    0552: 0D 0A 49 4E 56 41 4C 49 44 20 49 4E   invalidmsg db 13,10, "INVALID INPUT: Please kindly input number that is NOT LESS THAN 0 and NOT MORE THAN CURRENT QUANTITY.$"
+                50 55 54 3A 20 50 6C 65 61 73 65 20 
+                6B 69 6E 64 6C 79 20 69 6E 70 75 74 
+                20 6E 75 6D 62 65 72 20 74 68 61 74 
+                20 69 73 20 4E 4F 54 20 4C 45 53 53 
+                20 54 48 41 4E 20 30 20 61 6E 64 20 
+                4E 4F 54 20 4D 4F 52 45 20 54 48 41 
+                4E 20 43 55 52 52 45 4E 54 20 51 55 
+                41 4E 54 49 54 59 2E 24             
+[ 126]    05BA: 0D 0A 54 68 65 20 66 69 73 68 20 69   outoforder db 13,10, "The fish is out of stock!$"
+                73 20 6F 75 74 20 6F 66 20 73 74 6F 
+                63 6B 21 24                         
+[ 127]    05D6: 0D 0A 49 4E 56 41 4C 49 44 20 43 4F   unexisted db 13,10,"INVALID CODE: Please enter the GIVEN CODE to order fishes. Press 'Z' to proceed payment.$"
+                44 45 3A 20 50 6C 65 61 73 65 20 65 
+                6E 74 65 72 20 74 68 65 20 47 49 56 
+                45 4E 20 43 4F 44 45 20 74 6F 20 6F 
+                72 64 65 72 20 66 69 73 68 65 73 2E 
+                20 50 72 65 73 73 20 27 5A 27 20 74 
+                6F 20 70 72 6F 63 65 65 64 20 70 61 
+                79 6D 65 6E 74 2E 24                
+[ 128]    0631: 0D 0A 49 4E 56 41 4C 49 44 20 43 4F   unordered db 13,10,"INVALID CODE: Please enter [Y]Yes for proceeding order, Enter [N]No to return to menu. [X] to remove quantity.$"
+                44 45 3A 20 50 6C 65 61 73 65 20 65 
+                6E 74 65 72 20 5B 59 5D 59 65 73 20 
+                66 6F 72 20 70 72 6F 63 65 65 64 69 
+                6E 67 20 6F 72 64 65 72 2C 20 45 6E 
+                74 65 72 20 5B 4E 5D 4E 6F 20 74 6F 
+                20 72 65 74 75 72 6E 20 74 6F 20 6D 
+                65 6E 75 2E 20 5B 58 5D 20 74 6F 20 
+                72 65 6D 6F 76 65 20 71 75 61 6E 74 
+                69 74 79 2E 24                      
+[ 129]    06A2: 0D 0A 50 6C 65 61 73 65 20 43 68 6F   nofishincart db 13,10,"Please Choose a Fish before proceeding!$"
+                6F 73 65 20 61 20 46 69 73 68 20 62 
+                65 66 6F 72 65 20 70 72 6F 63 65 65 
+                64 69 6E 67 21 24                   
+[ 130]        :                                       
+[ 131]        :                                       
+[ 132]        :                                       
+[ 133]        :                                       .CODE
+[ 134]    06D0:                                       MAIN PROC
+[ 135]    06D0: B8 00 00                              MOV AX,@DATA
+[ 136]    06D3: 8E D8                                 MOV DS,AX
+[ 137]        :                                       
+[ 138]    06D5: 80 06 3D 03 0F                        add quantityA,15
+[ 139]    06DA: 80 06 3E 03 0C                        add quantityB,12
+[ 140]    06DF: 80 06 3F 03 0B                        add quantityC,11
+[ 141]    06E4: EB 1E                                 jmp menu
+[ 142]    06E6:                                       RestartMenu:
+[ 143]    06E6: C6 06 4F 03 00                        mov isMember,0h
+[ 144]    06EB: C6 06 49 03 00                        mov TotalQuantity,0
+[ 145]    06F0: C6 06 57 03 00                        mov TotalTotalPrice,0
+[ 146]        :                                       
+[ 147]    06F5: C6 06 40 03 00                        mov customerbuyA,0
+[ 148]    06FA: C6 06 41 03 00                        mov customerbuyB,0
+[ 149]    06FF: C6 06 42 03 00                        mov customerbuyC,0
+[ 150]        :                                       
+[ 151]    0704:                                       Menu:
+[ 152]    0704: C6 06 48 03 00                        mov verifyquantityforeach,0
+[ 153]        :                                       
+[ 154]    0709: C6 06 3C 03 01                        mov pageid,1
+[ 155]        :                                       
+[ 156]        :                                       ;refresh:
+[ 157]    070E: B4 06                                 mov ah,06h
+[ 158]    0710: B0 00                                 mov al,00h
+[ 159]    0712: 8A 3E 67 03                           mov bh,refresh
+[ 160]    0716: B9 00 00                              mov cx,0000h
+[ 161]    0719: BA 4F 18                              mov dx,184Fh
+[ 162]    071C: CD 10                                 int 10h
+[ 163]        :                                       
+[ 164]    071E: B4 02                                 mov ah,02h
+[ 165]    0720: B7 00                                 mov bh,0
+[ 166]    0722: B6 01                                 mov dh,1
+[ 167]    0724: B2 00                                 mov dl,0
+[ 168]    0726: CD 10                                 int 10h
+[ 169]        :                                       
+[ 170]    0728: B4 09                                 mov ah,09h
+[ 171]    072A: BA 00 00                              lea dx,menu1
+[ 172]    072D: CD 21                                 int 21h
+[ 173]        :                                       
+[ 174]        :                                       ;----------Fishes----------
+[ 175]    072F:                                       FishAPrint:
+[ 176]        :                                       
+[ 177]    072F: C6 06 4A 03 00                        mov quantitydigit,0
+[ 178]    0734: B4 09                                 mov ah,09h
+[ 179]    0736: BA BB 00                              lea dx,fishA
+[ 180]    0739: CD 21                                 int 21h
+[ 181]        :                                       
+[ 182]    073B: 80 3E 3D 03 0A                        cmp quantityA,10
+[ 183]    0740: 7D 02                                 jge borrowdigitA
+[ 184]    0742: 75 36                                 jne singledigitA
+[ 185]        :                                       
+[ 186]    0744:                                       borrowdigitA: ;add 10
+[ 187]    0744: A0 3D 03                              mov al, quantityA
+[ 188]    0747: A2 4B 03                              mov setquantitydigit,al     ;setquantitydigit = quantityA
+[ 189]        :                                       
+[ 190]        :                                       ;13 = 13
+[ 191]        :                                       
+[ 192]    074A:                                       repeatsubA:
+[ 193]    074A: 80 06 4A 03 01                        add quantitydigit,1
+[ 194]    074F: 80 2E 3D 03 0A                        sub quantityA,10
+[ 195]    0754: 80 3E 3D 03 0A                        cmp quantityA,10
+[ 196]    0759: 7E 02                                 jle norepeatsubA
+[ 197]    075B: E2 ED                                 loop repeatsubA
+[ 198]        :                                       
+[ 199]    075D:                                       norepeatsubA:
+[ 200]    075D: A0 4A 03                              mov al, quantitydigit
+[ 201]    0760: 04 30                                 add al, 30h
+[ 202]    0762: 8A D0                                 mov dl, al
+[ 203]    0764: B4 02                                 mov ah, 02h
+[ 204]    0766: CD 21                                 int 21h
+[ 205]    0768: A0 3D 03                              mov al, quantityA
+[ 206]    076B: 04 30                                 add al, 30h
+[ 207]    076D: 8A D0                                 mov dl, al
+[ 208]    076F: B4 02                                 mov ah, 02h
+[ 209]    0771: CD 21                                 int 21h
+[ 210]    0773: 80 06 3D 03 0A                        add quantityA,10
+[ 211]        :                                       
+[ 212]    0778: EB 0D                                 jmp FishBPrint
+[ 213]        :                                       
+[ 214]    077A:                                       singledigitA:
+[ 215]    077A: A0 3D 03                              mov al, quantityA
+[ 216]    077D: 04 30                                 add al, 30h        ; Convert to ASCII
+[ 217]    077F: 8A D0                                 mov dl, al
+[ 218]    0781: B4 02                                 mov ah, 02h        ; Print single character
+[ 219]    0783: CD 21                                 int 21h
+[ 220]        :                                       
+[ 221]    0785: EB 00                                 jmp FishBPrint
+[ 222]        :                                       
+[ 223]    0787:                                       FishBPrint:
+[ 224]        :                                       
+[ 225]    0787: C6 06 4A 03 00                        mov quantitydigit,0
+[ 226]    078C: B4 09                                 mov ah,09h
+[ 227]    078E: BA F6 00                              lea dx,fishB
+[ 228]    0791: CD 21                                 int 21h
+[ 229]        :                                       
+[ 230]    0793: 80 3E 3E 03 0A                        cmp quantityB,10
+[ 231]    0798: 7D 02                                 jge borrowdigitB
+[ 232]    079A: 75 36                                 jne singledigitB
+[ 233]        :                                       
+[ 234]    079C:                                       borrowdigitB: ;add 10
+[ 235]    079C: A0 3E 03                              mov al, quantityB
+[ 236]    079F: A2 4B 03                              mov setquantitydigit,al     ;setquantitydigit = quantityA
+[ 237]        :                                       
+[ 238]        :                                       ;13 = 13
+[ 239]        :                                       
+[ 240]    07A2:                                       repeatsubB:
+[ 241]    07A2: 80 06 4A 03 01                        add quantitydigit,1
+[ 242]    07A7: 80 2E 3E 03 0A                        sub quantityB,10
+[ 243]    07AC: 80 3E 3E 03 0A                        cmp quantityB,10
+[ 244]    07B1: 7E 02                                 jle norepeatsubB
+[ 245]    07B3: E2 ED                                 loop repeatsubB
+[ 246]        :                                       
+[ 247]    07B5:                                       norepeatsubB:
+[ 248]    07B5: A0 4A 03                              mov al, quantitydigit
+[ 249]    07B8: 04 30                                 add al, 30h
+[ 250]    07BA: 8A D0                                 mov dl, al
+[ 251]    07BC: B4 02                                 mov ah, 02h
+[ 252]    07BE: CD 21                                 int 21h
+[ 253]    07C0: A0 3E 03                              mov al, quantityB
+[ 254]    07C3: 04 30                                 add al, 30h
+[ 255]    07C5: 8A D0                                 mov dl, al
+[ 256]    07C7: B4 02                                 mov ah, 02h
+[ 257]    07C9: CD 21                                 int 21h
+[ 258]    07CB: 80 06 3E 03 0A                        add quantityB,10
+[ 259]        :                                       
+[ 260]    07D0: EB 0D                                 jmp FishCPrint
+[ 261]        :                                       
+[ 262]    07D2:                                       singledigitB:
+[ 263]    07D2: A0 3E 03                              mov al, quantityB
+[ 264]    07D5: 04 30                                 add al, 30h        ; Convert to ASCII
+[ 265]    07D7: 8A D0                                 mov dl, al
+[ 266]    07D9: B4 02                                 mov ah, 02h        ; Print single character
+[ 267]    07DB: CD 21                                 int 21h
+[ 268]        :                                       
+[ 269]    07DD: EB 00                                 jmp FishCPrint
+[ 270]        :                                       
+[ 271]    07DF:                                       FishCPrint:
+[ 272]    07DF: C6 06 4A 03 00                        mov quantitydigit,0
+[ 273]    07E4: B4 09                                 mov ah,09h
+[ 274]    07E6: BA 31 01                              lea dx,fishC
+[ 275]    07E9: CD 21                                 int 21h
+[ 276]        :                                       
+[ 277]    07EB: 80 3E 3F 03 0A                        cmp quantityC,10
+[ 278]    07F0: 7D 02                                 jge borrowdigitC
+[ 279]    07F2: 75 36                                 jne singledigitC
+[ 280]        :                                       
+[ 281]    07F4:                                       borrowdigitC: ;add 10
+[ 282]    07F4: A0 3F 03                              mov al, quantityC
+[ 283]    07F7: A2 4B 03                              mov setquantitydigit,al     ;setquantitydigit = quantityA
+[ 284]        :                                       
+[ 285]        :                                       ;13 = 13
+[ 286]        :                                       
+[ 287]    07FA:                                       repeatsubC:
+[ 288]    07FA: 80 06 4A 03 01                        add quantitydigit,1
+[ 289]    07FF: 80 2E 3F 03 0A                        sub quantityC,10
+[ 290]    0804: 80 3E 3F 03 0A                        cmp quantityC,10
+[ 291]    0809: 7E 02                                 jle norepeatsubC
+[ 292]    080B: E2 ED                                 loop repeatsubC
+[ 293]        :                                       
+[ 294]    080D:                                       norepeatsubC:
+[ 295]    080D: A0 4A 03                              mov al, quantitydigit
+[ 296]    0810: 04 30                                 add al, 30h
+[ 297]    0812: 8A D0                                 mov dl, al
+[ 298]    0814: B4 02                                 mov ah, 02h
+[ 299]    0816: CD 21                                 int 21h
+[ 300]    0818: A0 3F 03                              mov al, quantityC
+[ 301]    081B: 04 30                                 add al, 30h
+[ 302]    081D: 8A D0                                 mov dl, al
+[ 303]    081F: B4 02                                 mov ah, 02h
+[ 304]    0821: CD 21                                 int 21h
+[ 305]    0823: 80 06 3F 03 0A                        add quantityC,10
+[ 306]        :                                       
+[ 307]    0828: EB 0D                                 jmp FishDPrint
+[ 308]        :                                       
+[ 309]    082A:                                       singledigitC:
+[ 310]    082A: A0 3F 03                              mov al, quantityC
+[ 311]    082D: 04 30                                 add al, 30h        ; Convert to ASCII
+[ 312]    082F: 8A D0                                 mov dl, al
+[ 313]    0831: B4 02                                 mov ah, 02h        ; Print single character
+[ 314]    0833: CD 21                                 int 21h
+[ 315]        :                                       
+[ 316]    0835: EB 00                                 jmp FishDPrint
+[ 317]        :                                       
+[ 318]    0837:                                       FishDPrint:
+[ 319]    0837: EB 00                                 jmp Input
+[ 320]        :                                       ;----------Input----------
+[ 321]    0839:                                       Input:
+[ 322]    0839: B4 09                                 mov ah,09h
+[ 323]    083B: BA 64 03                              lea dx,newline
+[ 324]    083E: CD 21                                 int 21h
+[ 325]    0840: BA 68 03                              lea dx,prom1
+[ 326]    0843: CD 21                                 int 21h
+[ 327]        :                                       
+[ 328]    0845: B4 01                                 mov ah,01h
+[ 329]    0847: CD 21                                 int 21h
+[ 330]        :                                       
+[ 331]    0849: 3C 41                                 cmp al,"A"
+[ 332]    084B: 74 45                                 JE PurchasingFishA
+[ 333]    084D: 3C 61                                 cmp al,"a"
+[ 334]    084F: 74 41                                 JE PurchasingFishA
+[ 335]        :                                       
+[ 336]    0851: 3C 42                                 cmp al,"B"
+[ 337]    0853: 74 5B                                 JE PurchasingFishB
+[ 338]    0855: 3C 62                                 cmp al,"b"
+[ 339]    0857: 74 57                                 JE PurchasingFishB
+[ 340]        :                                       
+[ 341]    0859: 3C 43                                 cmp al,"C"
+[ 342]    085B: 74 71                                 JE PurchasingFishC
+[ 343]    085D: 3C 63                                 cmp al,"c"
+[ 344]    085F: 74 6D                                 JE PurchasingFishC
+[ 345]        :                                       
+[ 346]    0861: 3C 58                                 cmp al,"X"
+[ 347]    0863: 75 03 E9 E1 06                        JE Exit
+[ 348]    0868: 3C 78                                 cmp al,"x"
+[ 349]    086A: 75 03 E9 DA 06                        JE Exit
+[ 350]        :                                       
+[ 351]    086F: 3C 5A                                 cmp al,"Z"
+[ 352]    0871: 75 03 E9 17 01                        JE PreproceedOrder
+[ 353]    0876: 3C 7A                                 cmp al,"z"
+[ 354]    0878: 75 03 E9 10 01                        JE PreproceedOrder
+[ 355]        :                                       
+[ 356]    087D: 75 00                                 JNE Unexist
+[ 357]        :                                       
+[ 358]    087F:                                       Unexist:
+[ 359]    087F: B4 09                                 mov ah,09h
+[ 360]    0881: BA D6 05                              lea dx,unexisted
+[ 361]    0884: CD 21                                 int 21h
+[ 362]    0886: EB B1                                 jmp Input
+[ 363]        :                                       
+[ 364]    0888:                                       Unorder:
+[ 365]    0888: B4 09                                 mov ah,09h
+[ 366]    088A: BA 31 06                              lea dx,unordered
+[ 367]    088D: CD 21                                 int 21h
+[ 368]    088F: E9 09 06                              jmp counterinput
+[ 369]        :                                       
+[ 370]    0892:                                       PurchasingFishA:
+[ 371]        :                                       
+[ 372]    0892: 80 3E 3D 03 00                        cmp quantityA,0
+[ 373]    0897: 75 03 E9 B3 04                        JE OutOfStock
+[ 374]        :                                       
+[ 375]    089C: B4 09                                 mov ah,09h
+[ 376]    089E: BA C8 03                              lea dx,prom2
+[ 377]    08A1: CD 21                                 int 21h
+[ 378]        :                                       
+[ 379]    08A3: A0 3D 03                              mov al, quantityA
+[ 380]    08A6: C6 06 47 03 01                        mov SelectedVariable, 1h
+[ 381]    08AB: A2 46 03                              mov CurrentQuantity,al
+[ 382]        :                                       
+[ 383]    08AE: EB 3C                                 jmp InputQuantity
+[ 384]        :                                       
+[ 385]    08B0:                                       PurchasingFishB:
+[ 386]        :                                       
+[ 387]    08B0: 80 3E 3E 03 00                        cmp quantityB,0
+[ 388]    08B5: 75 03 E9 95 04                        JE OutOfStock
+[ 389]        :                                       
+[ 390]    08BA: B4 09                                 mov ah,09h
+[ 391]    08BC: BA C8 03                              lea dx,prom2
+[ 392]    08BF: CD 21                                 int 21h
+[ 393]        :                                       
+[ 394]    08C1: A0 3E 03                              mov al, quantityB
+[ 395]    08C4: C6 06 47 03 02                        mov SelectedVariable, 2h
+[ 396]    08C9: A2 46 03                              mov CurrentQuantity,al
+[ 397]        :                                       
+[ 398]    08CC: EB 1E                                 jmp InputQuantity
+[ 399]        :                                       
+[ 400]    08CE:                                       PurchasingFishC:
+[ 401]        :                                       
+[ 402]    08CE: 80 3E 3F 03 00                        cmp quantityC,0
+[ 403]    08D3: 75 03 E9 77 04                        JE OutOfStock
+[ 404]        :                                       
+[ 405]    08D8: B4 09                                 mov ah,09h
+[ 406]    08DA: BA C8 03                              lea dx,prom2
+[ 407]    08DD: CD 21                                 int 21h
+[ 408]        :                                       
+[ 409]    08DF: A0 3F 03                              mov al, quantityC
+[ 410]    08E2: C6 06 47 03 03                        mov SelectedVariable, 3h
+[ 411]    08E7: A2 46 03                              mov CurrentQuantity,al
+[ 412]        :                                       
+[ 413]    08EA: EB 00                                 jmp InputQuantity
+[ 414]        :                                       
+[ 415]    08EC:                                       InputQuantity:
+[ 416]    08EC: B4 01                                 mov ah, 01h
+[ 417]    08EE: CD 21                                 int 21h
+[ 418]        :                                       
+[ 419]    08F0: 2C 30                                 sub al, 30h        ; Convert ASCII to numeric
+[ 420]    08F2: 8A D8                                 mov bl, al
+[ 421]        :                                       
+[ 422]        :                                       ; Compare with quantityA
+[ 423]    08F4: 3A 1E 46 03                           cmp bl, currentquantity         ; Input >= quantityA?
+[ 424]    08F8: 7E 03 E9 39 04                        jg InvalidInput    ; If greater, jump to InvalidInput
+[ 425]    08FD: 75 00                                 jne CheckQuantity
+[ 426]        :                                       
+[ 427]        :                                       
+[ 428]    08FF:                                       CheckQuantity:
+[ 429]    08FF: 00 06 49 03                           add totalquantity,al
+[ 430]    0903: 00 06 48 03                           add verifyquantityforeach,al
+[ 431]        :                                       
+[ 432]        :                                       ;------------------------- Input is valid, proceed------------------------
+[ 433]    0907: B4 09                                 mov ah,09h
+[ 434]    0909: BA 64 03                              lea dx,newline
+[ 435]    090C: CD 21                                 int 21h
+[ 436]        :                                       
+[ 437]    090E: A0 48 03                              mov al,verifyquantityforeach
+[ 438]    0911: 2C 0A                                 sub al,10
+[ 439]        :                                       
+[ 440]    0913: 28 1E 46 03                           sub CurrentQuantity,bl
+[ 441]    0917: 8A 1E 46 03                           mov bl,CurrentQuantity
+[ 442]        :                                       
+[ 443]    091B: 80 3E 47 03 01                        cmp SelectedVariable,1
+[ 444]    0920: 74 0E                                 JE UpdatedQuantityA
+[ 445]        :                                       
+[ 446]    0922: 80 3E 47 03 02                        cmp SelectedVariable,2
+[ 447]    0927: 74 26                                 JE UpdatedQuantityB
+[ 448]        :                                       
+[ 449]    0929: 80 3E 47 03 03                        cmp SelectedVariable,3
+[ 450]    092E: 74 3E                                 JE UpdatedQuantityC
+[ 451]        :                                       
+[ 452]        :                                       ;---------------------------------------------------------------------
+[ 453]        :                                       
+[ 454]    0930:                                       UpdatedQuantityA:
+[ 455]    0930: 8A D3                                 mov dl, bl        ; Display result (user input)
+[ 456]    0932: 88 16 3D 03                           mov quantityA,dl
+[ 457]    0936: 80 C2 30                              add dl, 30h       ; Convert back to ASCII
+[ 458]        :                                       
+[ 459]    0939: 00 06 40 03                           add CustomerBuyA, al
+[ 460]    093D: 80 06 40 03 0A                        add CustomerBuyA, 10
+[ 461]        :                                       
+[ 462]    0942: C6 06 46 03 00                        mov CurrentQuantity, 0
+[ 463]    0947: C6 06 47 03 00                        mov SelectedVariable, 0
+[ 464]    094C: E9 B5 FD                              jmp Menu
+[ 465]        :                                       
+[ 466]        :                                       ;---------------------------------------------------------------------
+[ 467]        :                                       
+[ 468]    094F:                                       UpdatedQuantityB:
+[ 469]    094F: 8A D3                                 mov dl, bl        ; Display result (user input)
+[ 470]    0951: 88 16 3E 03                           mov quantityB,dl
+[ 471]    0955: 80 C2 30                              add dl, 30h       ; Convert back to ASCII
+[ 472]        :                                       
+[ 473]    0958: 00 06 41 03                           add CustomerBuyB, al
+[ 474]    095C: 80 06 41 03 0A                        add CustomerBuyB, 10
+[ 475]        :                                       
+[ 476]    0961: C6 06 46 03 00                        mov CurrentQuantity, 0
+[ 477]    0966: C6 06 47 03 00                        mov SelectedVariable, 0
+[ 478]    096B: E9 96 FD                              jmp Menu
+[ 479]        :                                       
+[ 480]        :                                       ;---------------------------------------------------------------------
+[ 481]        :                                       
+[ 482]    096E:                                       UpdatedQuantityC:
+[ 483]    096E: 8A D3                                 mov dl, bl        ; Display result (user input)
+[ 484]    0970: 88 16 3F 03                           mov quantityC,dl
+[ 485]    0974: 80 C2 30                              add dl, 30h       ; Convert back to ASCII
+[ 486]        :                                       
+[ 487]    0977: 00 06 42 03                           add CustomerBuyC, al
+[ 488]    097B: 80 06 42 03 0A                        add CustomerBuyC, 10
+[ 489]        :                                       
+[ 490]    0980: C6 06 46 03 00                        mov CurrentQuantity, 0
+[ 491]    0985: C6 06 47 03 00                        mov SelectedVariable, 0
+[ 492]    098A: E9 77 FD                              jmp Menu          ; Go back to input menu
+[ 493]        :                                       
+[ 494]        :                                       ;-----------------------------------------------------------------------
+[ 495]        :                                       
+[ 496]    098D:                                       PreproceedOrder:
+[ 497]        :                                       
+[ 498]        :                                       ;refresh:
+[ 499]    098D: B4 06                                 mov ah,06h
+[ 500]    098F: B0 00                                 mov al,00h
+[ 501]    0991: 8A 3E 67 03                           mov bh,refresh
+[ 502]    0995: B9 00 00                              mov cx,0000h
+[ 503]    0998: BA 4F 18                              mov dx,184Fh
+[ 504]    099B: CD 10                                 int 10h
+[ 505]        :                                       
+[ 506]    099D: B4 02                                 mov ah,02h
+[ 507]    099F: B7 00                                 mov bh,0
+[ 508]    09A1: B6 01                                 mov dh,1
+[ 509]    09A3: B2 00                                 mov dl,0
+[ 510]    09A5: CD 10                                 int 10h
+[ 511]        :                                       
+[ 512]    09A7: B4 09                                 mov ah,09h
+[ 513]    09A9: BA 64 03                              lea dx,newline
+[ 514]    09AC: CD 21                                 int 21h
+[ 515]        :                                       
+[ 516]    09AE: BA 64 03                              lea dx,newline
+[ 517]    09B1: CD 21                                 int 21h
+[ 518]        :                                       
+[ 519]    09B3: 80 3E 49 03 01                        cmp totalquantity,1
+[ 520]    09B8: 7D 15                                 jge ProceedOrder
+[ 521]        :                                       
+[ 522]    09BA: 75 00                                 JNE UnproceedOrder
+[ 523]        :                                       
+[ 524]    09BC:                                       UnproceedOrder:
+[ 525]    09BC: B4 09                                 mov ah,09h
+[ 526]    09BE: BA A2 06                              lea dx,nofishincart
+[ 527]    09C1: CD 21                                 int 21h
+[ 528]    09C3: BA 64 03                              lea dx,newline
+[ 529]    09C6: CD 21                                 int 21h
+[ 530]        :                                       
+[ 531]    09C8: B4 01                                 mov ah,01h
+[ 532]    09CA: CD 21                                 int 21h
+[ 533]        :                                       
+[ 534]    09CC: E9 35 FD                              jmp menu
+[ 535]    09CF:                                       ProceedOrder:
+[ 536]    09CF: B4 06                                 mov ah,06h     ;Screen Refresh
+[ 537]    09D1: B0 00                                 mov al,00h
+[ 538]    09D3: 8A 3E 67 03                           mov bh,refresh
+[ 539]    09D7: B9 00 00                              mov cx,0000h
+[ 540]    09DA: BA 4F 18                              mov dx,184Fh
+[ 541]    09DD: CD 10                                 int 10h
+[ 542]        :                                       
+[ 543]    09DF: B4 02                                 mov ah,02h
+[ 544]    09E1: B7 00                                 mov bh,0
+[ 545]    09E3: B6 01                                 mov dh,1
+[ 546]    09E5: B2 00                                 mov dl,0
+[ 547]    09E7: CD 10                                 int 10h
+[ 548]        :                                       
+[ 549]    09E9: B4 09                                 mov ah,09h
+[ 550]    09EB: BA 6C 01                              lea dx,menu2
+[ 551]    09EE: CD 21                                 int 21h
+[ 552]    09F0: B4 09                                 mov ah,09h
+[ 553]    09F2: BA 64 03                              lea dx,newline
+[ 554]    09F5: CD 21                                 int 21h
+[ 555]        :                                       
+[ 556]    09F7: C6 06 3C 03 02                        mov pageid,2
+[ 557]        :                                       
+[ 558]    09FC:                                       fishcartA:
+[ 559]    09FC: 80 3E 40 03 01                        cmp CustomerBuyA, 1
+[ 560]    0A01: 7D 3D                                 jge cartedfishAprint    ; Jump to print if greater than 1
+[ 561]    0A03: 80 3E 40 03 00                        cmp CustomerBuyA, 0
+[ 562]    0A08: 74 00                                 je fishcartB           ; Skip to the next variable if equal to 0
+[ 563]        :                                       
+[ 564]    0A0A:                                       fishcartB:
+[ 565]    0A0A: 80 3E 41 03 01                        cmp CustomerBuyB, 1
+[ 566]    0A0F: 7C 03 E9 8B 00                        jge cartedfishBprint
+[ 567]    0A14: 80 3E 41 03 00                        cmp CustomerBuyB, 0    ; Jump to print if greater than 1
+[ 568]    0A19: 75 00                                 jne fishcartC           ; Skip to the next variable if equal to 0
+[ 569]        :                                       
+[ 570]    0A1B:                                       fishcartC:
+[ 571]    0A1B: 80 3E 42 03 01                        cmp CustomerBuyC, 1
+[ 572]    0A20: 7C 03 E9 D9 00                        jge cartedfishCprint
+[ 573]    0A25: 80 3E 42 03 00                        cmp CustomerBuyC, 0    ; Jump to print if greater than 1
+[ 574]    0A2A: 75 00                                 jne fishcartD           ; Skip to the next variable if equal to 0
+[ 575]        :                                       
+[ 576]    0A2C:                                       fishcartD:
+[ 577]        :                                       
+[ 578]    0A2C: 80 3E 3C 03 02                        cmp pageid,2
+[ 579]    0A31: 75 03 E9 28 03                        je counter
+[ 580]    0A36: 80 3E 3C 03 03                        cmp pageid,3
+[ 581]    0A3B: 75 03 E9 97 01                        je removechoice
+[ 582]        :                                       ; End of checks. Continue with the program.
+[ 583]        :                                       
+[ 584]    0A40:                                       cartedfishAprint:
+[ 585]        :                                       
+[ 586]    0A40: C6 06 4A 03 00                        mov QuantityDigit,0
+[ 587]    0A45: C6 06 4B 03 00                        mov setQuantityDigit,0
+[ 588]        :                                       
+[ 589]    0A4A: B4 09                                 mov ah,09h
+[ 590]    0A4C: BA 3F 02                              lea dx,CartedfishA
+[ 591]    0A4F: CD 21                                 int 21h
+[ 592]        :                                       
+[ 593]    0A51: 80 3E 40 03 0A                        cmp CustomerBuyA,10
+[ 594]    0A56: 7D 02                                 jge borrowdigitA2
+[ 595]    0A58: 75 37                                 jne singledigitA2
+[ 596]        :                                       
+[ 597]    0A5A:                                       borrowdigitA2: ;add 10
+[ 598]    0A5A: A0 40 03                              mov al, CustomerBuyA
+[ 599]    0A5D: A2 4B 03                              mov setquantitydigit,al
+[ 600]        :                                       
+[ 601]    0A60:                                       repeatsubA2:
+[ 602]    0A60: 80 06 4A 03 01                        add quantitydigit,1
+[ 603]    0A65: 80 2E 40 03 0A                        sub CustomerBuyA,10
+[ 604]    0A6A: 80 3E 40 03 0A                        cmp CustomerBuyA,10
+[ 605]    0A6F: 7E 02                                 jle norepeatsubA2
+[ 606]    0A71: E2 ED                                 loop repeatsubA2
+[ 607]        :                                       
+[ 608]    0A73:                                       norepeatsubA2:
+[ 609]    0A73: A0 4A 03                              mov al, quantitydigit
+[ 610]    0A76: 04 30                                 add al, 30h
+[ 611]    0A78: 8A D0                                 mov dl, al
+[ 612]    0A7A: B4 02                                 mov ah, 02h
+[ 613]    0A7C: CD 21                                 int 21h
+[ 614]    0A7E: A0 40 03                              mov al, CustomerBuyA
+[ 615]    0A81: 04 30                                 add al, 30h
+[ 616]    0A83: 8A D0                                 mov dl, al
+[ 617]    0A85: B4 02                                 mov ah, 02h
+[ 618]    0A87: CD 21                                 int 21h
+[ 619]    0A89: 80 06 40 03 0A                        add CustomerBuyA,10
+[ 620]        :                                       
+[ 621]    0A8E: E9 79 FF                              jmp FishcartB
+[ 622]        :                                       
+[ 623]    0A91:                                       singledigitA2:
+[ 624]    0A91: A0 40 03                              mov al, CustomerBuyA
+[ 625]    0A94: 04 30                                 add al, 30h        ; Convert to ASCII
+[ 626]    0A96: 8A D0                                 mov dl, al
+[ 627]    0A98: B4 02                                 mov ah, 02h        ; Print single character
+[ 628]    0A9A: CD 21                                 int 21h
+[ 629]        :                                       
+[ 630]    0A9C: E9 6B FF                              jmp FishcartB
+[ 631]        :                                       
+[ 632]    0A9F:                                       cartedfishBprint:
+[ 633]    0A9F: C6 06 4A 03 00                        mov QuantityDigit,0
+[ 634]    0AA4: C6 06 4B 03 00                        mov setQuantityDigit,0
+[ 635]        :                                       
+[ 636]    0AA9: B4 09                                 mov ah,09h
+[ 637]    0AAB: BA 82 02                              lea dx,CartedfishB
+[ 638]    0AAE: CD 21                                 int 21h
+[ 639]        :                                       
+[ 640]    0AB0: 80 3E 41 03 0A                        cmp CustomerBuyB,10
+[ 641]    0AB5: 7D 02                                 jge borrowdigitB2
+[ 642]    0AB7: 75 37                                 jne singledigitB2
+[ 643]        :                                       
+[ 644]    0AB9:                                       borrowdigitB2: ;add 10
+[ 645]    0AB9: A0 41 03                              mov al, CustomerBuyB
+[ 646]    0ABC: A2 4B 03                              mov setquantitydigit,al
+[ 647]        :                                       
+[ 648]    0ABF:                                       repeatsubB2:
+[ 649]    0ABF: 80 06 4A 03 01                        add quantitydigit,1
+[ 650]    0AC4: 80 2E 41 03 0A                        sub CustomerBuyB,10
+[ 651]    0AC9: 80 3E 41 03 0A                        cmp CustomerBuyB,10
+[ 652]    0ACE: 7E 02                                 jle norepeatsubB2
+[ 653]    0AD0: E2 ED                                 loop repeatsubB2
+[ 654]        :                                       
+[ 655]    0AD2:                                       norepeatsubB2:
+[ 656]    0AD2: A0 4A 03                              mov al, quantitydigit
+[ 657]    0AD5: 04 30                                 add al, 30h
+[ 658]    0AD7: 8A D0                                 mov dl, al
+[ 659]    0AD9: B4 02                                 mov ah, 02h
+[ 660]    0ADB: CD 21                                 int 21h
+[ 661]    0ADD: A0 41 03                              mov al, CustomerBuyB
+[ 662]    0AE0: 04 30                                 add al, 30h
+[ 663]    0AE2: 8A D0                                 mov dl, al
+[ 664]    0AE4: B4 02                                 mov ah, 02h
+[ 665]    0AE6: CD 21                                 int 21h
+[ 666]    0AE8: 80 06 41 03 0A                        add CustomerBuyB,10
+[ 667]        :                                       
+[ 668]    0AED: E9 2B FF                              jmp FishcartC
+[ 669]        :                                       
+[ 670]    0AF0:                                       singledigitB2:
+[ 671]    0AF0: A0 41 03                              mov al, CustomerBuyB
+[ 672]    0AF3: 04 30                                 add al, 30h        ; Convert to ASCII
+[ 673]    0AF5: 8A D0                                 mov dl, al
+[ 674]    0AF7: B4 02                                 mov ah, 02h        ; Print single character
+[ 675]    0AF9: CD 21                                 int 21h
+[ 676]        :                                       
+[ 677]    0AFB: E9 1D FF                              jmp FishcartC
+[ 678]        :                                       
+[ 679]    0AFE:                                       cartedfishCprint:
+[ 680]    0AFE: C6 06 4A 03 00                        mov QuantityDigit,0
+[ 681]    0B03: C6 06 4B 03 00                        mov setQuantityDigit,0
+[ 682]        :                                       
+[ 683]    0B08: B4 09                                 mov ah,09h
+[ 684]    0B0A: BA C5 02                              lea dx,CartedfishC
+[ 685]    0B0D: CD 21                                 int 21h
+[ 686]        :                                       
+[ 687]    0B0F: 80 3E 42 03 0A                        cmp CustomerBuyC,10
+[ 688]    0B14: 7D 02                                 jge borrowdigitC2
+[ 689]    0B16: 75 37                                 jne singledigitC2
+[ 690]        :                                       
+[ 691]    0B18:                                       borrowdigitC2: ;add 10
+[ 692]    0B18: A0 42 03                              mov al, CustomerBuyC
+[ 693]    0B1B: A2 4B 03                              mov setquantitydigit,al
+[ 694]        :                                       
+[ 695]    0B1E:                                       repeatsubC2:
+[ 696]    0B1E: 80 06 4A 03 01                        add quantitydigit,1
+[ 697]    0B23: 80 2E 42 03 0A                        sub CustomerBuyC,10
+[ 698]    0B28: 80 3E 42 03 0A                        cmp CustomerBuyC,10
+[ 699]    0B2D: 7E 02                                 jle norepeatsubC2
+[ 700]    0B2F: E2 ED                                 loop repeatsubC2
+[ 701]        :                                       
+[ 702]    0B31:                                       norepeatsubC2:
+[ 703]    0B31: A0 4A 03                              mov al, quantitydigit
+[ 704]    0B34: 04 30                                 add al, 30h
+[ 705]    0B36: 8A D0                                 mov dl, al
+[ 706]    0B38: B4 02                                 mov ah, 02h
+[ 707]    0B3A: CD 21                                 int 21h
+[ 708]    0B3C: A0 42 03                              mov al, CustomerBuyC
+[ 709]    0B3F: 04 30                                 add al, 30h
+[ 710]    0B41: 8A D0                                 mov dl, al
+[ 711]    0B43: B4 02                                 mov ah, 02h
+[ 712]    0B45: CD 21                                 int 21h
+[ 713]    0B47: 80 06 42 03 0A                        add CustomerBuyC,10
+[ 714]        :                                       
+[ 715]    0B4C: E9 DD FE                              jmp FishcartD
+[ 716]        :                                       
+[ 717]    0B4F:                                       singledigitC2:
+[ 718]    0B4F: A0 42 03                              mov al, CustomerBuyC
+[ 719]    0B52: 04 30                                 add al, 30h        ; Convert to ASCII
+[ 720]    0B54: 8A D0                                 mov dl, al
+[ 721]    0B56: B4 02                                 mov ah, 02h        ; Print single character
+[ 722]    0B58: CD 21                                 int 21h
+[ 723]        :                                       
+[ 724]    0B5A: E9 CF FE                              jmp FishcartD
+[ 725]        :                                       
+[ 726]    0B5D:                                       removeorder:
+[ 727]        :                                       ;refresh:
+[ 728]    0B5D: B4 06                                 mov ah,06h
+[ 729]    0B5F: B0 00                                 mov al,00h
+[ 730]    0B61: 8A 3E 67 03                           mov bh,refresh
+[ 731]    0B65: B9 00 00                              mov cx,0000h
+[ 732]    0B68: BA 4F 18                              mov dx,184Fh
+[ 733]    0B6B: CD 10                                 int 10h
+[ 734]    0B6D: B4 02                                 mov ah,02h
+[ 735]    0B6F: B7 00                                 mov bh,0
+[ 736]    0B71: B6 01                                 mov dh,1
+[ 737]    0B73: B2 00                                 mov dl,0
+[ 738]    0B75: CD 10                                 int 10h
+[ 739]        :                                       
+[ 740]    0B77: B4 09                                 mov ah,09h
+[ 741]    0B79: BA 08 03                              lea dx,menu3
+[ 742]    0B7C: CD 21                                 int 21h
+[ 743]    0B7E: BA 6C 01                              lea dx,menu2
+[ 744]    0B81: CD 21                                 int 21h
+[ 745]    0B83: B4 09                                 mov ah,09h
+[ 746]    0B85: BA 64 03                              lea dx,newline
+[ 747]    0B88: CD 21                                 int 21h
+[ 748]        :                                       
+[ 749]    0B8A: C6 06 3C 03 03                        mov pageid,3
+[ 750]        :                                       
+[ 751]    0B8F: 80 3E 49 03 00                        cmp totalquantity,0
+[ 752]    0B94: 75 03 E9 F4 FD                        je preproceedorder
+[ 753]        :                                       
+[ 754]    0B99:                                       fishcartA1:
+[ 755]    0B99: 80 3E 40 03 01                        cmp CustomerBuyA, 1
+[ 756]    0B9E: 7C 03 E9 9D FE                        jge cartedfishAprint    ; Jump to print if greater than 1
+[ 757]    0BA3: 80 3E 40 03 00                        cmp CustomerBuyA, 0
+[ 758]    0BA8: 75 03 E9 5D FE                        je fishcartB           ; Skip to the next variable if equal to 0
+[ 759]        :                                       
+[ 760]    0BAD:                                       fishcartB1:
+[ 761]    0BAD: 80 3E 41 03 01                        cmp CustomerBuyB, 1
+[ 762]    0BB2: 7C 03 E9 E8 FE                        jge cartedfishBprint
+[ 763]    0BB7: 80 3E 41 03 00                        cmp CustomerBuyB, 0    ; Jump to print if greater than 1
+[ 764]    0BBC: 74 03 E9 5A FE                        jne fishcartC           ; Skip to the next variable if equal to 0
+[ 765]        :                                       
+[ 766]    0BC1:                                       fishcartC1:
+[ 767]    0BC1: 80 3E 42 03 01                        cmp CustomerBuyC, 1
+[ 768]    0BC6: 7C 03 E9 33 FF                        jge cartedfishCprint
+[ 769]    0BCB: 80 3E 42 03 00                        cmp CustomerBuyC, 0    ; Jump to print if greater than 1
+[ 770]    0BD0: 74 03 E9 57 FE                        jne fishcartD           ; Skip to the next variable if equal to 0
+[ 771]        :                                       
+[ 772]    0BD5:                                       fishcartD1:
+[ 773]    0BD5: EB 00                                 jmp removechoice
+[ 774]        :                                       
+[ 775]    0BD7:                                       removechoice:
+[ 776]    0BD7: B4 09                                 mov ah,09h
+[ 777]    0BD9: BA 64 03                              lea dx,newline
+[ 778]    0BDC: CD 21                                 int 21h
+[ 779]    0BDE: BA DF 03                              lea dx,prom3
+[ 780]    0BE1: CD 21                                 int 21h
+[ 781]        :                                       
+[ 782]    0BE3: B4 01                                 mov ah,01h
+[ 783]    0BE5: CD 21                                 int 21h
+[ 784]        :                                       
+[ 785]    0BE7: 3C 41                                 cmp al,"A"
+[ 786]    0BE9: 74 2D                                 je removefishA
+[ 787]    0BEB: 3C 61                                 cmp al,"a"
+[ 788]    0BED: 74 29                                 je removefishA
+[ 789]        :                                       
+[ 790]    0BEF: 3C 42                                 cmp al,"B"
+[ 791]    0BF1: 74 69                                 je removefishB
+[ 792]    0BF3: 3C 62                                 cmp al,"b"
+[ 793]    0BF5: 74 65                                 je removefishB
+[ 794]        :                                       
+[ 795]    0BF7: 3C 43                                 cmp al,"C"
+[ 796]    0BF9: 75 03 E9 9F 00                        je removefishC
+[ 797]    0BFE: 3C 63                                 cmp al,"c"
+[ 798]    0C00: 75 03 E9 98 00                        je removefishC
+[ 799]        :                                       
+[ 800]    0C05: 3C 5A                                 cmp al,"Z"
+[ 801]    0C07: 75 03 E9 C3 FD                        je proceedorder
+[ 802]    0C0C: 3C 7A                                 cmp al,"z"
+[ 803]    0C0E: 75 03 E9 BC FD                        je proceedorder
+[ 804]        :                                       
+[ 805]    0C13: 74 03 E9 C3 00                        jne Failtoremove1
+[ 806]        :                                       
+[ 807]    0C18:                                       removefishA:
+[ 808]    0C18: C6 06 47 03 01                        mov selectedvariable,1
+[ 809]        :                                       
+[ 810]    0C1D: 80 3E 40 03 00                        cmp customerbuyA,0
+[ 811]    0C22: 75 03 E9 C8 00                        je FailToRemove2
+[ 812]        :                                       
+[ 813]    0C27: B4 09                                 mov ah,09h
+[ 814]    0C29: BA 35 04                              lea dx,prom4
+[ 815]    0C2C: CD 21                                 int 21h
+[ 816]        :                                       
+[ 817]    0C2E: B8 00 10                              mov ax,1000h
+[ 818]        :                                       
+[ 819]    0C31: B4 01                                 mov ah,01h
+[ 820]    0C33: CD 21                                 int 21h
+[ 821]    0C35: 2C 30                                 sub al,30h
+[ 822]        :                                       
+[ 823]    0C37: 3A 06 40 03                           cmp al,customerbuyA
+[ 824]    0C3B: 7E 05                                 jle ProceedRemoveA
+[ 825]    0C3D: 74 03 E9 AD 00                        jne Failtoremove2
+[ 826]        :                                       
+[ 827]    0C42:                                       ProceedRemoveA:
+[ 828]    0C42: A2 43 03                              mov removequantityA,al
+[ 829]    0C45: A0 43 03                              mov al,removequantityA
+[ 830]    0C48: 28 06 40 03                           sub CustomerBuyA,al
+[ 831]    0C4C: 28 06 49 03                           sub Totalquantity,al
+[ 832]    0C50: 00 06 3D 03                           add QuantityA,al
+[ 833]        :                                       
+[ 834]    0C54: C6 06 43 03 00                        mov removequantityA,0h
+[ 835]    0C59: E9 01 FF                              jmp removeorder
+[ 836]        :                                       
+[ 837]        :                                       ;--------------------------------------------------
+[ 838]        :                                       
+[ 839]    0C5C:                                       removefishB:
+[ 840]    0C5C: C6 06 47 03 02                        mov selectedvariable,2
+[ 841]        :                                       
+[ 842]    0C61: 80 3E 41 03 00                        cmp customerbuyB,0
+[ 843]    0C66: 75 03 E9 84 00                        je FailToRemove2
+[ 844]        :                                       
+[ 845]    0C6B: B4 09                                 mov ah,09h
+[ 846]    0C6D: BA 35 04                              lea dx,prom4
+[ 847]    0C70: CD 21                                 int 21h
+[ 848]        :                                       
+[ 849]    0C72: B8 00 10                              mov ax,1000h
+[ 850]        :                                       
+[ 851]    0C75: B4 01                                 mov ah,01h
+[ 852]    0C77: CD 21                                 int 21h
+[ 853]    0C79: 2C 30                                 sub al,30h
+[ 854]        :                                       
+[ 855]    0C7B: 3A 06 41 03                           cmp al,customerbuyB
+[ 856]    0C7F: 7E 02                                 jle ProceedRemoveB
+[ 857]    0C81: 75 6C                                 jne Failtoremove2
+[ 858]        :                                       
+[ 859]    0C83:                                       ProceedRemoveB:
+[ 860]    0C83: A2 44 03                              mov removequantityB,al
+[ 861]    0C86: A0 44 03                              mov al,removequantityB
+[ 862]    0C89: 28 06 41 03                           sub CustomerBuyB,al
+[ 863]    0C8D: 28 06 49 03                           sub Totalquantity,al
+[ 864]    0C91: 00 06 3E 03                           add QuantityB,al
+[ 865]        :                                       
+[ 866]    0C95: C6 06 44 03 00                        mov removequantityB,0h
+[ 867]    0C9A: E9 C0 FE                              jmp removeorder
+[ 868]        :                                       
+[ 869]        :                                       ;---------------------------------------------------
+[ 870]        :                                       
+[ 871]    0C9D:                                       removefishC:
+[ 872]    0C9D: C6 06 47 03 03                        mov selectedvariable,3
+[ 873]        :                                       
+[ 874]    0CA2: 80 3E 42 03 00                        cmp customerbuyC,0
+[ 875]    0CA7: 74 46                                 je FailToRemove2
+[ 876]        :                                       
+[ 877]    0CA9: B4 09                                 mov ah,09h
+[ 878]    0CAB: BA 35 04                              lea dx,prom4
+[ 879]    0CAE: CD 21                                 int 21h
+[ 880]        :                                       
+[ 881]    0CB0: B8 00 10                              mov ax,1000h
+[ 882]        :                                       
+[ 883]    0CB3: B4 01                                 mov ah,01h
+[ 884]    0CB5: CD 21                                 int 21h
+[ 885]    0CB7: 2C 30                                 sub al,30h
+[ 886]        :                                       
+[ 887]    0CB9: 3A 06 42 03                           cmp al,customerbuyC
+[ 888]    0CBD: 7E 02                                 jle ProceedRemoveC
+[ 889]    0CBF: 75 2E                                 jne Failtoremove2
+[ 890]        :                                       
+[ 891]    0CC1:                                       ProceedRemoveC:
+[ 892]    0CC1: A2 45 03                              mov removequantityC,al
+[ 893]    0CC4: A0 45 03                              mov al,removequantityC
+[ 894]    0CC7: 28 06 42 03                           sub CustomerBuyC,al
+[ 895]    0CCB: 28 06 49 03                           sub Totalquantity,al
+[ 896]    0CCF: 00 06 3F 03                           add QuantityC,al
+[ 897]        :                                       
+[ 898]    0CD3: C6 06 45 03 00                        mov removequantityC,0h
+[ 899]    0CD8: E9 82 FE                              jmp removeorder
+[ 900]        :                                       
+[ 901]    0CDB:                                       FailToRemove1:
+[ 902]    0CDB: B4 09                                 mov ah, 09h
+[ 903]    0CDD: BA 64 03                              lea dx, newline
+[ 904]    0CE0: CD 21                                 int 21h
+[ 905]    0CE2: BA D6 05                              lea dx, unexisted
+[ 906]    0CE5: CD 21                                 int 21h
+[ 907]    0CE7: BA 64 03                              lea dx, newline
+[ 908]    0CEA: CD 21                                 int 21h
+[ 909]        :                                       
+[ 910]    0CEC: E9 E8 FE                              jmp removechoice
+[ 911]        :                                       
+[ 912]    0CEF:                                       FailToRemove2:
+[ 913]    0CEF: B4 09                                 mov ah, 09h
+[ 914]    0CF1: BA 64 03                              lea dx, newline
+[ 915]    0CF4: CD 21                                 int 21h
+[ 916]    0CF6: BA 52 05                              lea dx, invalidmsg
+[ 917]    0CF9: CD 21                                 int 21h
+[ 918]    0CFB: BA 64 03                              lea dx, newline
+[ 919]    0CFE: CD 21                                 int 21h
+[ 920]        :                                       
+[ 921]    0D00: B8 00 10                              mov ax,1000h
+[ 922]        :                                       
+[ 923]    0D03: 80 3E 47 03 01                        cmp selectedvariable,1
+[ 924]    0D08: 74 0E                                 je removefishAFail
+[ 925]    0D0A: 80 3E 47 03 02                        cmp selectedvariable,2
+[ 926]    0D0F: 74 11                                 je removefishBFail
+[ 927]    0D11: 80 3E 47 03 03                        cmp selectedvariable,3
+[ 928]    0D16: 74 14                                 je removefishCFail
+[ 929]        :                                       
+[ 930]    0D18:                                       removefishAFail:
+[ 931]    0D18: C6 06 47 03 00                        mov selectedvariable, 0
+[ 932]    0D1D: 75 03 E9 B5 FE                        je removechoice
+[ 933]        :                                       
+[ 934]    0D22:                                       removefishBFail:
+[ 935]    0D22: C6 06 47 03 00                        mov selectedvariable, 0
+[ 936]    0D27: 75 03 E9 AB FE                        je removechoice
+[ 937]        :                                       
+[ 938]    0D2C:                                       removefishCFail:
+[ 939]    0D2C: C6 06 47 03 00                        mov selectedvariable, 0
+[ 940]    0D31: 75 03 E9 A1 FE                        je removechoice
+[ 941]        :                                       
+[ 942]        :                                       
+[ 943]    0D36:                                       InvalidInput:
+[ 944]    0D36: B4 09                                 mov ah, 09h
+[ 945]    0D38: BA 64 03                              lea dx, newline
+[ 946]    0D3B: CD 21                                 int 21h
+[ 947]    0D3D: BA 52 05                              lea dx, invalidmsg
+[ 948]    0D40: CD 21                                 int 21h
+[ 949]    0D42: BA 64 03                              lea dx, newline
+[ 950]    0D45: CD 21                                 int 21h
+[ 951]        :                                       
+[ 952]    0D47: BA C8 03                              lea dx, prom2
+[ 953]    0D4A: CD 21                                 int 21h
+[ 954]    0D4C: E9 9D FB                              jmp InputQuantity
+[ 955]        :                                       
+[ 956]    0D4F:                                       OutOfStock:
+[ 957]    0D4F: B4 09                                 mov ah,09h
+[ 958]    0D51: BA 64 03                              lea dx, newline
+[ 959]    0D54: CD 21                                 int 21h
+[ 960]    0D56: BA BA 05                              lea dx, outoforder
+[ 961]    0D59: CD 21                                 int 21h
+[ 962]    0D5B: E9 DB FA                              jmp input
+[ 963]        :                                       
+[ 964]        :                                       
+[ 965]        :                                       
+[ 966]    0D5E:                                       Counter:
+[ 967]    0D5E: B4 09                                 mov ah,09h
+[ 968]    0D60: BA 64 03                              lea dx,newline
+[ 969]    0D63: CD 21                                 int 21h
+[ 970]        :                                       
+[ 971]    0D65: BA 65 04                              lea dx,totalvalue
+[ 972]    0D68: CD 21                                 int 21h
+[ 973]        :                                       
+[ 974]    0D6A: C6 06 4A 03 00                        mov QuantityDigit,0
+[ 975]    0D6F: C6 06 4B 03 00                        mov setQuantityDigit,0
+[ 976]        :                                       
+[ 977]    0D74: 80 3E 49 03 0A                        cmp totalquantity,10
+[ 978]    0D79: 7D 02                                 jge borrowdigitT
+[ 979]    0D7B: 75 36                                 jne singledigitT
+[ 980]        :                                       
+[ 981]    0D7D:                                       borrowdigitT: ;add 10
+[ 982]    0D7D: A0 42 03                              mov al, CustomerBuyC
+[ 983]    0D80: A2 4B 03                              mov setquantitydigit,al
+[ 984]        :                                       
+[ 985]    0D83:                                       repeatsubT:
+[ 986]    0D83: 80 06 4A 03 01                        add quantitydigit,1
+[ 987]    0D88: 80 2E 49 03 0A                        sub totalquantity,10
+[ 988]    0D8D: 80 3E 49 03 0A                        cmp totalquantity,10
+[ 989]    0D92: 7E 02                                 jle norepeatsubT
+[ 990]    0D94: E2 ED                                 loop repeatsubT
+[ 991]        :                                       
+[ 992]    0D96:                                       norepeatsubT:
+[ 993]    0D96: A0 4A 03                              mov al, quantitydigit
+[ 994]    0D99: 04 30                                 add al, 30h
+[ 995]    0D9B: 8A D0                                 mov dl, al
+[ 996]    0D9D: B4 02                                 mov ah, 02h
+[ 997]    0D9F: CD 21                                 int 21h
+[ 998]    0DA1: A0 49 03                              mov al, totalquantity
+[ 999]    0DA4: 04 30                                 add al, 30h
+[1000]    0DA6: 8A D0                                 mov dl, al
+[1001]    0DA8: B4 02                                 mov ah, 02h
+[1002]    0DAA: CD 21                                 int 21h
+[1003]    0DAC: 80 06 49 03 0A                        add totalquantity,10
+[1004]        :                                       
+[1005]    0DB1: EB 0D                                 jmp counter2
+[1006]        :                                       
+[1007]    0DB3:                                       singledigitT:
+[1008]    0DB3: A0 49 03                              mov al, totalquantity
+[1009]    0DB6: 04 30                                 add al, 30h        ; Convert to ASCII
+[1010]    0DB8: 8A D0                                 mov dl, al
+[1011]    0DBA: B4 02                                 mov ah, 02h        ; Print single character
+[1012]    0DBC: CD 21                                 int 21h
+[1013]        :                                       
+[1014]    0DBE: EB 00                                 jmp counter2
+[1015]        :                                       
+[1016]        :                                       
+[1017]    0DC0:                                       counter2:
+[1018]        :                                       
+[1019]    0DC0: B4 09                                 mov ah,09h
+[1020]    0DC2: BA 75 04                              lea dx,totalprice
+[1021]    0DC5: CD 21                                 int 21h
+[1022]    0DC7: BA 61 04                              lea dx,RM
+[1023]    0DCA: CD 21                                 int 21h
+[1024]        :                                       
+[1025]    0DCC: C6 06 75 04 00                        mov totalprice,0h
+[1026]        :                                       
+[1027]        :                                       ;price * quantity
+[1028]    0DD1: A0 51 03                              mov al,PriceA
+[1029]    0DD4: 8A 1E 40 03                           mov bl,CustomerBuyA
+[1030]    0DD8: F6 E3                                 mul bl
+[1031]    0DDA: A2 54 03                              mov TotalpriceA,al
+[1032]        :                                       
+[1033]    0DDD: A0 52 03                              mov al,PriceB
+[1034]    0DE0: 8A 1E 41 03                           mov bl,CustomerBuyB
+[1035]    0DE4: F6 E3                                 mul bl
+[1036]    0DE6: A2 55 03                              mov TotalpriceB,al
+[1037]        :                                       
+[1038]    0DE9: A0 53 03                              mov al,PriceC
+[1039]    0DEC: 8A 1E 42 03                           mov bl,CustomerBuyC
+[1040]    0DF0: F6 E3                                 mul bl
+[1041]    0DF2: A2 56 03                              mov TotalpriceC,al
+[1042]        :                                       
+[1043]    0DF5: A0 54 03                              mov al,TotalpriceA
+[1044]    0DF8: 02 06 55 03                           add al,TotalpriceB
+[1045]    0DFC: 02 06 56 03                           add al,TotalpriceC
+[1046]        :                                       
+[1047]    0E00: C6 06 57 03 00                        mov TotalTotalPrice,0h
+[1048]        :                                       
+[1049]    0E05: 00 06 57 03                           add TotalTotalPrice,al
+[1050]        :                                       
+[1051]    0E09: A0 4D 03                              mov al,quantitydiscount
+[1052]        :                                       
+[1053]    0E0C: 38 06 49 03                           cmp Totalquantity,al
+[1054]    0E10: 7D 02                                 jge DiscountForQuantity
+[1055]    0E12: 75 0C                                 jne NoQuantityDiscount
+[1056]        :                                       
+[1057]    0E14:                                       DiscountForQuantity:
+[1058]    0E14: 80 2E 57 03 20                        sub TotalTotalPrice,20h ;Discount RM20
+[1059]    0E19: C6 06 4E 03 01                        mov DetectQuantityDiscount,1
+[1060]    0E1E: EB 07                                 jmp AfterDiscountCalculating
+[1061]        :                                       
+[1062]    0E20:                                       NoQuantityDiscount:
+[1063]    0E20: C6 06 4E 03 00                        mov DetectQuantityDiscount,0
+[1064]    0E25: EB 00                                 jmp AfterDiscountCalculating
+[1065]        :                                       
+[1066]    0E27:                                       AfterDiscountCalculating:
+[1067]        :                                       
+[1068]    0E27: 80 3E 4F 03 01                        cmp isMember,1
+[1069]    0E2C: 74 02                                 je MembershipDiscount
+[1070]    0E2E: 75 05                                 jne SkipMembershipDiscount
+[1071]        :                                       
+[1072]    0E30:                                       MembershipDiscount:
+[1073]    0E30: 80 2E 57 03 14                        sub TotalTotalPrice,20
+[1074]        :                                       
+[1075]    0E35:                                       SkipMembershipDiscount:
+[1076]        :                                       
+[1077]    0E35:                                       CalculatePrice:
+[1078]    0E35: A0 57 03                              mov al, TotalTotalPrice       ; Load the number into AX
+[1079]    0E38: BE 58 03                              lea si, TotalPriceDigits; SI points to the buffer
+[1080]    0E3B: 83 C6 03                              add si, 3            ; Point SI to the last digit in the buffer (before '$')
+[1081]        :                                       
+[1082]    0E3E: B9 04 00                              mov cx, 4            ; Loops for 4 digits
+[1083]        :                                       
+[1084]    0E41:                                       convert_loop:
+[1085]    0E41: 33 D2                                 xor dx, dx           ; Clear DX for division
+[1086]    0E43: BB 0A 00                              mov bx, 10           ; Base 10 for decimal
+[1087]    0E46: F7 F3                                 div bx               ; Divide AX by 10: Quotient in AX, Remainder in DX
+[1088]    0E48: 80 C2 30                              add dl, '0'          ; Convert remainder to ASCII
+[1089]    0E4B: 88 14                                 mov [si], dl         ; Store ASCII digit into the buffer
+[1090]    0E4D: 4E                                    dec si               ; Move SI to the previous digit
+[1091]    0E4E: E2 F1                                 loop convert_loop    ; Repeat
+[1092]        :                                       
+[1093]    0E50: B4 09                                 mov ah, 09h
+[1094]    0E52: BA 58 03                              lea dx, TotalPriceDigits
+[1095]    0E55: CD 21                                 int 21h
+[1096]        :                                       
+[1097]    0E57: B4 09                                 mov ah,09h
+[1098]    0E59: BA 60 03                              lea dx,decimalPrice
+[1099]    0E5C: CD 21                                 int 21h
+[1100]        :                                       
+[1101]    0E5E: 80 3E 4F 03 01                        cmp isMember,1
+[1102]    0E63: 74 13                                 je PrintMembership
+[1103]        :                                       
+[1104]    0E65: 80 3E 57 03 32                        cmp TotalTotalPrice,50
+[1105]    0E6A: 7F 03 E9 AB 00                        jle CounterInputWithoutAskingMembership
+[1106]        :                                       
+[1107]        :                                       ;Print Membership Discount
+[1108]    0E6F: 80 3E 4F 03 01                        cmp isMember,1
+[1109]        :                                       
+[1110]    0E74: 74 02                                 je PrintMembership
+[1111]    0E76: 75 07                                 jne SkipPrintMembership
+[1112]        :                                       
+[1113]    0E78:                                       PrintMembership:
+[1114]    0E78: B4 09                                 mov ah,09h
+[1115]    0E7A: BA DA 04                              lea dx,MemberDis
+[1116]    0E7D: CD 21                                 int 21h
+[1117]        :                                       
+[1118]    0E7F:                                       SkipPrintMembership:
+[1119]        :                                       
+[1120]    0E7F: 80 3E 4E 03 01                        cmp DetectQuantityDiscount,1
+[1121]    0E84: 74 02                                 je printquantitydis
+[1122]    0E86: 75 07                                 jne noprintquantitydis
+[1123]        :                                       
+[1124]    0E88:                                       printquantitydis:
+[1125]    0E88: B4 09                                 mov ah,09h
+[1126]    0E8A: BA FB 04                              lea dx,QuantityDis
+[1127]    0E8D: CD 21                                 int 21h
+[1128]        :                                       
+[1129]    0E8F:                                       noprintquantitydis:
+[1130]    0E8F: B4 09                                 mov ah,09h
+[1131]    0E91: BA 94 04                              lea dx,payment
+[1132]    0E94: CD 21                                 int 21h
+[1133]        :                                       
+[1134]    0E96: BA 64 03                              lea dx,newline
+[1135]    0E99: CD 21                                 int 21h
+[1136]        :                                       
+[1137]        :                                       
+[1138]        :                                       
+[1139]    0E9B:                                       counterinput:
+[1140]        :                                       
+[1141]    0E9B: B4 09                                 mov ah,09h
+[1142]    0E9D: BA 64 03                              lea dx,newline
+[1143]    0EA0: CD 21                                 int 21h
+[1144]        :                                       
+[1145]        :                                       
+[1146]    0EA2: B4 01                                 mov ah,01h
+[1147]    0EA4: CD 21                                 int 21h
+[1148]        :                                       
+[1149]    0EA6: 3C 59                                 cmp al,"Y"
+[1150]    0EA8: 74 25                                 je AskMembership1
+[1151]    0EAA: 3C 79                                 cmp al,"y"
+[1152]    0EAC: 74 21                                 je AskMembership1
+[1153]        :                                       ;
+[1154]    0EAE: 3C 4E                                 cmp al,"N"
+[1155]    0EB0: 75 03 E9 4F F8                        je menu
+[1156]    0EB5: 3C 6E                                 cmp al,"n"
+[1157]    0EB7: 75 03 E9 48 F8                        je menu
+[1158]        :                                       
+[1159]    0EBC: 3C 58                                 cmp al,"X"
+[1160]    0EBE: 75 03 E9 9A FC                        je removeorder
+[1161]    0EC3: 3C 78                                 cmp al,"x"
+[1162]    0EC5: 75 03 E9 93 FC                        je removeorder
+[1163]        :                                       
+[1164]    0ECA: 74 03 E9 B9 F9                        jne Unorder
+[1165]        :                                       
+[1166]    0ECF:                                       AskMembership1:
+[1167]        :                                       
+[1168]    0ECF: 80 3E 4F 03 00                        cmp isMember,0
+[1169]    0ED4: 74 02                                 je Askmembership2
+[1170]    0ED6: 75 23                                 jne payprocess
+[1171]        :                                       
+[1172]    0ED8:                                       AskMembership2:
+[1173]    0ED8: B4 09                                 mov ah,09h
+[1174]    0EDA: BA BF 04                              lea dx, memberships
+[1175]    0EDD: CD 21                                 int 21h
+[1176]        :                                       
+[1177]    0EDF: B4 01                                 mov ah,01h
+[1178]    0EE1: CD 21                                 int 21h
+[1179]        :                                       
+[1180]    0EE3: 3C 59                                 cmp al,"Y"
+[1181]    0EE5: 74 04                                 je YesMember
+[1182]    0EE7: 3C 79                                 cmp al,"y"
+[1183]    0EE9: 74 00                                 je YesMember
+[1184]        :                                       
+[1185]    0EEB:                                       YesMember:
+[1186]    0EEB: C6 06 4F 03 01                        mov isMember,1
+[1187]    0EF0: E9 DC FA                              jmp ProceedOrder
+[1188]        :                                       
+[1189]    0EF3: 3C 4E                                 cmp al,"N"
+[1190]    0EF5: 74 04                                 je Payprocess
+[1191]    0EF7: 3C 6E                                 cmp al,"n"
+[1192]    0EF9: 74 00                                 je Payprocess
+[1193]        :                                       
+[1194]    0EFB:                                       payprocess:
+[1195]    0EFB: B4 09                                 mov ah,09h
+[1196]    0EFD: BA 64 03                              lea dx, newline
+[1197]    0F00: CD 21                                 int 21h
+[1198]    0F02: BA 1A 05                              lea dx, transaction
+[1199]    0F05: CD 21                                 int 21h
+[1200]        :                                       
+[1201]    0F07: B4 01                                 mov ah,01h
+[1202]    0F09: CD 21                                 int 21h
+[1203]        :                                       
+[1204]        :                                       
+[1205]    0F0B:                                       EndSection:
+[1206]    0F0B: B4 09                                 mov ah,09h
+[1207]    0F0D: BA 64 03                              lea dx, newline
+[1208]    0F10: CD 21                                 int 21h
+[1209]    0F12: BA 32 05                              lea dx, bye
+[1210]    0F15: CD 21                                 int 21h
+[1211]    0F17: E9 CC F7                              jmp RestartMenu
+[1212]        :                                       
+[1213]        :                                       
+[1214]    0F1A:                                       CounterInputWithoutAskingMembership: ;Counter if TotalTotalPrice less than RM50
+[1215]    0F1A: B4 09                                 mov ah,09h
+[1216]    0F1C: BA 64 03                              lea dx,newline
+[1217]    0F1F: CD 21                                 int 21h
+[1218]        :                                       
+[1219]    0F21: B4 01                                 mov ah,01h
+[1220]    0F23: CD 21                                 int 21h
+[1221]        :                                       
+[1222]    0F25: 3C 59                                 cmp al,"Y"
+[1223]    0F27: 74 D2                                 je payprocess
+[1224]    0F29: 3C 79                                 cmp al,"y"
+[1225]    0F2B: 74 CE                                 je payprocess
+[1226]        :                                       ;
+[1227]    0F2D: 3C 4E                                 cmp al,"N"
+[1228]    0F2F: 75 03 E9 D0 F7                        je menu
+[1229]    0F34: 3C 6E                                 cmp al,"n"
+[1230]    0F36: 75 03 E9 C9 F7                        je menu
+[1231]        :                                       
+[1232]    0F3B: 3C 58                                 cmp al,"X"
+[1233]    0F3D: 75 03 E9 1B FC                        je removeorder
+[1234]    0F42: 3C 78                                 cmp al,"x"
+[1235]    0F44: 75 03 E9 14 FC                        je removeorder
+[1236]        :                                       
+[1237]        :                                       
+[1238]        :                                       
+[1239]    0F49:                                       exit:
+[1240]    0F49: B8 00 4C                              MOV AX,4C00H
+[1241]    0F4C: CD 21                                 INT 21H
+[1242]        :                                       MAIN ENDP
+[1243]        :                                       END MAIN
+[1244]        :                                       
+[1245]        :                                       ;--THINGS TO DO--
+[1246]        :                                       ;Membership Discount, asking in ProceedOrder
+[1247]        :                                       
+[1248]        :                                       ;--REMINDER--
+[1249]        :                                       ; 1. Two-or-more-digits numeric variable "PriceA db 40" shows other symbol, pain in the ass.
+[1250]        :                                       
+[1251]        :                                       ;--Unused Variable--
+[1252]        :                                       ; 1. prom4
+[1253]        :                                       ; 2. prom5
+[1254]        :                                       ; 3. discount
+[1255]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 4E      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 09      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: FC      -   check sum (l.byte)
+0013: 4C      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 6D      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 6D      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

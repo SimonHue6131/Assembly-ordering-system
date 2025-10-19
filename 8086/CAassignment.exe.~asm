@@ -1,0 +1,1258 @@
+.8086
+.MODEL SMALL
+
+.DATA
+
+menu1 db 10,13,   "============================================================"
+db 10,13,   "* CODE * FISHES    * WEIGHT(KG) * PRICES (RM) * QUANTITIES *"
+db 10,13,   "============================================================$"
+fishA db 10,13,   "  A      Catfish        37kg      RM15.00               $"
+fishB db 10,13,   "  B      Cod fish       40kg      RM12.00               $"
+fishC db 10,13,   "  C      Tilopie        34kg      RM10.00               $"
+
+menu2 db 10,13,         "===================================================================="
+db 10,13,         "* CODE * FISHES    * WEIGHT(KG) * PRICES (RM) * QUANTITIES IN-CART *"
+db 10,13,         "====================================================================$"
+cartedfishA db 10,13,   "  A      Catfish        37kg      RM15.00                       $"
+cartedfishB db 10,13,   "  B      Cod fish       40kg      RM12.00                       $"
+cartedfishC db 10,13,   "  C      Tilopie        34kg      RM10.00                       $"
+
+menu3 db 10,13,         "Remove an order, followed by the code of the fish$"
+
+pageid db 0
+
+quantityA db 0
+quantityB db 0
+quantityC db 0
+
+CustomerBuyA db 0
+CustomerBuyB db 0
+CustomerBuyC db 0
+
+RemoveQuantityA db 0
+RemoveQuantityB db 0
+RemoveQuantityC db 0
+
+CurrentQuantity db 0
+SelectedVariable db 0
+verifyquantityforeach db 0
+
+totalquantity db 0
+
+quantitydigit db 0
+
+setquantitydigit db 0
+quantitydigitcount db 0
+
+quantitydiscount db 7 ;Requirend 7 quantites for discount
+DetectQuantityDiscount db 0
+isMember db 0
+membersdiscount db 20
+
+
+
+;qrcode db 13,10,              "####### ##      # #######"
+;```````db 13,10,              "#     #         # #     #"
+;       db 13,10,              "# ### # #  ### #  # ### #"
+;       db 13,10,              "# ### # ## ## #   # ### #"
+;       db 13,10,              "# ### # ####   #  # ### #"
+;       db 13,10,              "#     #  #  ##    #     #"
+;       db 13,10,              "####### # # # # # #######"
+;       db 13,10,              "        # #    #         "         ;Overlapped due to my laptop performance, if yall want to try out, change the "transaction" to qrcode at line 1142th
+;       db 13,10,              "####  # #   # # ##  ### #"
+;       db 13,10,              "   #  # #    # #  #   #  "
+;       db 13,10,              " #### ##   ###    ###    "
+;       db 13,10,              " ####  #   # ##########  "
+;       db 13,10,              "  #  ##  #  ## # #### ###"
+;       db 13,10,              "    ##  ### #  ## ###   #"
+;       db 13,10,              "# #  ##     ## ##  # ## "
+;       db 13,10,              "# ###   ##  #   #####   #"
+;       db 13,10,              "   ####  #  ## ##########"
+;       db 13,10,              "        ##  ### #   # # #"
+;       db 13,10,             "#######      ## # # # ###"
+;       db 13,10,              "#     #   # #   #   #  # "
+;       db 13,10,              "# ### #  ##     ###### ##"
+;       db 13,10,              "# ### # ## # ##  ## #####"
+;       db 13,10,              "# ### # #  ## ##  # # ## "
+;       db 13,10,              "#     # #  ##### #  # #  "
+;       db 13,10,              "####### ###   #   #######$"
+
+
+priceA db 15
+priceB db 12
+priceC db 10
+
+TotalPriceA db 0
+TotalPriceB db 0
+TotalPriceC db 0
+TotalTotalPrice db 0
+
+TotalPriceDigits dw "0000$",0
+
+decimalPrice db ".00$"
+
+
+newline db 10,13, "$"
+
+refresh db 7
+
+prom1 db 10,13,"Enter the code of fish you prefer to order(Input 'X' for exit, Input 'Z' to proceed order.): $"
+
+prom2 db 10,13,"Enter the quantity: $"
+
+prom3 db 10,13,"Enter the code of ordered fish you prefer to removed(Press 'Z' return menu page.): $"
+
+prom4 db 10,13,"Enter remove quantity for selected fish: $"
+
+RM db "RM $"
+
+totalvalue db 13,10,"Total Value: $"
+totalprice db 13,10,"Total Price: $"
+discountmsg db 13,10,"Discount   : $"
+
+payment db 13,10,"Proceed to pay?(Y/N) | Remove an item(X)$"
+
+Memberships db 13,10,"Are you a Member (Y/N): $"
+MemberDis db 13,10,"Membership Discount: RM0020.00$"
+
+QuantityDis db 13,10,"Quantity Discount: RM0020.00$"
+
+
+transaction db 13,10,"[INSERT QR CODE HERE]$"
+bye db 13,10,"Thank You! Please Come Again!$"
+
+
+invalidmsg db 13,10, "INVALID INPUT: Please kindly input number that is NOT LESS THAN 0 and NOT MORE THAN CURRENT QUANTITY.$"
+outoforder db 13,10, "The fish is out of stock!$"
+unexisted db 13,10,"INVALID CODE: Please enter the GIVEN CODE to order fishes. Press 'Z' to proceed payment.$"
+unordered db 13,10,"INVALID CODE: Please enter [Y]Yes for proceeding order, Enter [N]No to return to menu. [X] to remove quantity.$"
+nofishincart db 13,10,"Please Choose a Fish before proceeding!$"
+
+
+
+.CODE
+MAIN PROC
+MOV AX,@DATA
+MOV DS,AX
+
+add quantityA,15
+add quantityB,12
+add quantityC,11
+jmp menu
+RestartMenu:
+mov isMember,0h
+mov TotalQuantity,0
+mov TotalTotalPrice,0
+
+mov customerbuyA,0
+mov customerbuyB,0
+mov customerbuyC,0
+
+Menu:
+mov verifyquantityforeach,0
+
+mov pageid,1
+
+;refresh:
+mov ah,06h
+mov al,00h
+mov bh,refresh
+mov cx,0000h
+mov dx,184Fh
+int 10h
+
+mov ah,02h
+mov bh,0
+mov dh,1
+mov dl,0
+int 10h
+
+mov ah,09h
+lea dx,menu1
+int 21h
+
+;----------Fishes----------
+FishAPrint:
+
+mov quantitydigit,0
+mov ah,09h
+lea dx,fishA
+int 21h
+
+cmp quantityA,10
+jge borrowdigitA
+jne singledigitA
+
+borrowdigitA: ;add 10
+mov al, quantityA
+mov setquantitydigit,al     ;setquantitydigit = quantityA
+
+;13 = 13
+
+repeatsubA:
+add quantitydigit,1
+sub quantityA,10
+cmp quantityA,10
+jle norepeatsubA
+loop repeatsubA
+
+norepeatsubA:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, quantityA
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add quantityA,10
+
+jmp FishBPrint
+
+singledigitA:
+mov al, quantityA
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp FishBPrint
+
+FishBPrint:
+
+mov quantitydigit,0
+mov ah,09h
+lea dx,fishB
+int 21h
+
+cmp quantityB,10
+jge borrowdigitB
+jne singledigitB
+
+borrowdigitB: ;add 10
+mov al, quantityB
+mov setquantitydigit,al     ;setquantitydigit = quantityA
+
+;13 = 13
+
+repeatsubB:
+add quantitydigit,1
+sub quantityB,10
+cmp quantityB,10
+jle norepeatsubB
+loop repeatsubB
+
+norepeatsubB:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, quantityB
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add quantityB,10
+
+jmp FishCPrint
+
+singledigitB:
+mov al, quantityB
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp FishCPrint
+
+FishCPrint:
+mov quantitydigit,0
+mov ah,09h
+lea dx,fishC
+int 21h
+
+cmp quantityC,10
+jge borrowdigitC
+jne singledigitC
+
+borrowdigitC: ;add 10
+mov al, quantityC
+mov setquantitydigit,al     ;setquantitydigit = quantityA
+
+;13 = 13
+
+repeatsubC:
+add quantitydigit,1
+sub quantityC,10
+cmp quantityC,10
+jle norepeatsubC
+loop repeatsubC
+
+norepeatsubC:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, quantityC
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add quantityC,10
+
+jmp FishDPrint
+
+singledigitC:
+mov al, quantityC
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp FishDPrint
+
+FishDPrint:
+jmp Input
+;----------Input----------
+Input:
+mov ah,09h
+lea dx,newline
+int 21h
+lea dx,prom1
+int 21h
+
+mov ah,01h
+int 21h
+
+cmp al,"A"
+JE PurchasingFishA
+cmp al,"a"
+JE PurchasingFishA
+
+cmp al,"B"
+JE PurchasingFishB
+cmp al,"b"
+JE PurchasingFishB
+
+cmp al,"C"
+JE PurchasingFishC
+cmp al,"c"
+JE PurchasingFishC
+
+cmp al,"X"
+JE Exit
+cmp al,"x"
+JE Exit
+
+cmp al,"Z"
+JE PreproceedOrder
+cmp al,"z"
+JE PreproceedOrder
+
+JNE Unexist
+
+Unexist:
+mov ah,09h
+lea dx,unexisted
+int 21h
+jmp Input
+
+Unorder:
+mov ah,09h
+lea dx,unordered
+int 21h
+jmp counterinput
+
+PurchasingFishA:
+
+cmp quantityA,0
+JE OutOfStock
+
+mov ah,09h
+lea dx,prom2
+int 21h
+
+mov al, quantityA
+mov SelectedVariable, 1h
+mov CurrentQuantity,al
+
+jmp InputQuantity
+
+PurchasingFishB:
+
+cmp quantityB,0
+JE OutOfStock
+
+mov ah,09h
+lea dx,prom2
+int 21h
+
+mov al, quantityB
+mov SelectedVariable, 2h
+mov CurrentQuantity,al
+
+jmp InputQuantity
+
+PurchasingFishC:
+
+cmp quantityC,0
+JE OutOfStock
+
+mov ah,09h
+lea dx,prom2
+int 21h
+
+mov al, quantityC
+mov SelectedVariable, 3h
+mov CurrentQuantity,al
+
+jmp InputQuantity
+
+InputQuantity:
+mov ah, 01h
+int 21h
+
+sub al, 30h        ; Convert ASCII to numeric
+mov bl, al
+
+; Compare with quantityA
+cmp bl, currentquantity         ; Input >= quantityA?
+jg InvalidInput    ; If greater, jump to InvalidInput
+jne CheckQuantity
+
+
+CheckQuantity:
+add totalquantity,al
+add verifyquantityforeach,al
+
+;------------------------- Input is valid, proceed------------------------
+mov ah,09h
+lea dx,newline
+int 21h
+
+mov al,verifyquantityforeach
+sub al,10
+
+sub CurrentQuantity,bl
+mov bl,CurrentQuantity
+
+cmp SelectedVariable,1
+JE UpdatedQuantityA
+
+cmp SelectedVariable,2
+JE UpdatedQuantityB
+
+cmp SelectedVariable,3
+JE UpdatedQuantityC
+
+;---------------------------------------------------------------------
+
+UpdatedQuantityA:
+mov dl, bl        ; Display result (user input)
+mov quantityA,dl
+add dl, 30h       ; Convert back to ASCII
+
+add CustomerBuyA, al
+add CustomerBuyA, 10
+
+mov CurrentQuantity, 0
+mov SelectedVariable, 0
+jmp Menu
+
+;---------------------------------------------------------------------
+
+UpdatedQuantityB:
+mov dl, bl        ; Display result (user input)
+mov quantityB,dl
+add dl, 30h       ; Convert back to ASCII
+
+add CustomerBuyB, al
+add CustomerBuyB, 10
+
+mov CurrentQuantity, 0
+mov SelectedVariable, 0
+jmp Menu
+
+;---------------------------------------------------------------------
+
+UpdatedQuantityC:
+mov dl, bl        ; Display result (user input)
+mov quantityC,dl
+add dl, 30h       ; Convert back to ASCII
+
+add CustomerBuyC, al
+add CustomerBuyC, 10
+
+mov CurrentQuantity, 0
+mov SelectedVariable, 0
+jmp Menu          ; Go back to input menu
+
+;-----------------------------------------------------------------------
+
+PreproceedOrder:
+
+;refresh:
+mov ah,06h
+mov al,00h
+mov bh,refresh
+mov cx,0000h
+mov dx,184Fh
+int 10h
+
+mov ah,02h
+mov bh,0
+mov dh,1
+mov dl,0
+int 10h
+
+mov ah,09h
+lea dx,newline
+int 21h
+
+lea dx,newline
+int 21h
+
+cmp totalquantity,1
+jge ProceedOrder
+
+JNE UnproceedOrder
+
+UnproceedOrder:
+mov ah,09h
+lea dx,nofishincart
+int 21h
+lea dx,newline
+int 21h
+
+mov ah,01h
+int 21h
+
+jmp menu
+ProceedOrder:
+mov ah,06h     ;Screen Refresh
+mov al,00h
+mov bh,refresh
+mov cx,0000h
+mov dx,184Fh
+int 10h
+
+mov ah,02h
+mov bh,0
+mov dh,1
+mov dl,0
+int 10h
+
+mov ah,09h
+lea dx,menu2
+int 21h
+mov ah,09h
+lea dx,newline
+int 21h
+
+mov pageid,2
+
+fishcartA:
+cmp CustomerBuyA, 1
+jge cartedfishAprint    ; Jump to print if greater than 1
+cmp CustomerBuyA, 0
+je fishcartB           ; Skip to the next variable if equal to 0
+
+fishcartB:
+cmp CustomerBuyB, 1
+jge cartedfishBprint
+cmp CustomerBuyB, 0    ; Jump to print if greater than 1
+jne fishcartC           ; Skip to the next variable if equal to 0
+
+fishcartC:
+cmp CustomerBuyC, 1
+jge cartedfishCprint
+cmp CustomerBuyC, 0    ; Jump to print if greater than 1
+jne fishcartD           ; Skip to the next variable if equal to 0
+
+fishcartD:
+
+cmp pageid,2
+je counter
+cmp pageid,3
+je removechoice
+; End of checks. Continue with the program.
+
+cartedfishAprint:
+
+mov QuantityDigit,0
+mov setQuantityDigit,0
+
+mov ah,09h
+lea dx,CartedfishA
+int 21h
+
+cmp CustomerBuyA,10
+jge borrowdigitA2
+jne singledigitA2
+
+borrowdigitA2: ;add 10
+mov al, CustomerBuyA
+mov setquantitydigit,al
+
+repeatsubA2:
+add quantitydigit,1
+sub CustomerBuyA,10
+cmp CustomerBuyA,10
+jle norepeatsubA2
+loop repeatsubA2
+
+norepeatsubA2:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, CustomerBuyA
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add CustomerBuyA,10
+
+jmp FishcartB
+
+singledigitA2:
+mov al, CustomerBuyA
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp FishcartB
+
+cartedfishBprint:
+mov QuantityDigit,0
+mov setQuantityDigit,0
+
+mov ah,09h
+lea dx,CartedfishB
+int 21h
+
+cmp CustomerBuyB,10
+jge borrowdigitB2
+jne singledigitB2
+
+borrowdigitB2: ;add 10
+mov al, CustomerBuyB
+mov setquantitydigit,al
+
+repeatsubB2:
+add quantitydigit,1
+sub CustomerBuyB,10
+cmp CustomerBuyB,10
+jle norepeatsubB2
+loop repeatsubB2
+
+norepeatsubB2:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, CustomerBuyB
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add CustomerBuyB,10
+
+jmp FishcartC
+
+singledigitB2:
+mov al, CustomerBuyB
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp FishcartC
+
+cartedfishCprint:
+mov QuantityDigit,0
+mov setQuantityDigit,0
+
+mov ah,09h
+lea dx,CartedfishC
+int 21h
+
+cmp CustomerBuyC,10
+jge borrowdigitC2
+jne singledigitC2
+
+borrowdigitC2: ;add 10
+mov al, CustomerBuyC
+mov setquantitydigit,al
+
+repeatsubC2:
+add quantitydigit,1
+sub CustomerBuyC,10
+cmp CustomerBuyC,10
+jle norepeatsubC2
+loop repeatsubC2
+
+norepeatsubC2:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, CustomerBuyC
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add CustomerBuyC,10
+
+jmp FishcartD
+
+singledigitC2:
+mov al, CustomerBuyC
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp FishcartD
+
+removeorder:
+;refresh:
+mov ah,06h
+mov al,00h
+mov bh,refresh
+mov cx,0000h
+mov dx,184Fh
+int 10h
+mov ah,02h
+mov bh,0
+mov dh,1
+mov dl,0
+int 10h
+
+mov ah,09h
+lea dx,menu3
+int 21h
+lea dx,menu2
+int 21h
+mov ah,09h
+lea dx,newline
+int 21h
+
+mov pageid,3
+
+cmp totalquantity,0
+je preproceedorder
+
+fishcartA1:
+cmp CustomerBuyA, 1
+jge cartedfishAprint    ; Jump to print if greater than 1
+cmp CustomerBuyA, 0
+je fishcartB           ; Skip to the next variable if equal to 0
+
+fishcartB1:
+cmp CustomerBuyB, 1
+jge cartedfishBprint
+cmp CustomerBuyB, 0    ; Jump to print if greater than 1
+jne fishcartC           ; Skip to the next variable if equal to 0
+
+fishcartC1:
+cmp CustomerBuyC, 1
+jge cartedfishCprint
+cmp CustomerBuyC, 0    ; Jump to print if greater than 1
+jne fishcartD           ; Skip to the next variable if equal to 0
+
+fishcartD1:
+jmp removechoice
+
+removechoice:
+mov ah,09h
+lea dx,newline
+int 21h
+lea dx,prom3
+int 21h
+
+mov ah,01h
+int 21h
+
+cmp al,"A"
+je removefishA
+cmp al,"a"
+je removefishA
+
+cmp al,"B"
+je removefishB
+cmp al,"b"
+je removefishB
+
+cmp al,"C"
+je removefishC
+cmp al,"c"
+je removefishC
+
+cmp al,"Z"
+je proceedorder
+cmp al,"z"
+je proceedorder
+
+jne Failtoremove1
+
+removefishA:
+mov selectedvariable,1
+
+cmp customerbuyA,0
+je FailToRemove2
+
+mov ah,09h
+lea dx,prom4
+int 21h
+
+mov ax,1000h
+
+mov ah,01h
+int 21h
+sub al,30h
+
+cmp al,customerbuyA
+jle ProceedRemoveA
+jne Failtoremove2
+
+ProceedRemoveA:
+mov removequantityA,al
+mov al,removequantityA
+sub CustomerBuyA,al
+sub Totalquantity,al
+add QuantityA,al
+
+mov removequantityA,0h
+jmp removeorder
+
+;--------------------------------------------------
+
+removefishB:
+mov selectedvariable,2
+
+cmp customerbuyB,0
+je FailToRemove2
+
+mov ah,09h
+lea dx,prom4
+int 21h
+
+mov ax,1000h
+
+mov ah,01h
+int 21h
+sub al,30h
+
+cmp al,customerbuyB
+jle ProceedRemoveB
+jne Failtoremove2
+
+ProceedRemoveB:
+mov removequantityB,al
+mov al,removequantityB
+sub CustomerBuyB,al
+sub Totalquantity,al
+add QuantityB,al
+
+mov removequantityB,0h
+jmp removeorder
+
+;---------------------------------------------------
+
+removefishC:
+mov selectedvariable,3
+
+cmp customerbuyC,0
+je FailToRemove2
+
+mov ah,09h
+lea dx,prom4
+int 21h
+
+mov ax,1000h
+
+mov ah,01h
+int 21h
+sub al,30h
+
+cmp al,customerbuyC
+jle ProceedRemoveC
+jne Failtoremove2
+
+ProceedRemoveC:
+mov removequantityC,al
+mov al,removequantityC
+sub CustomerBuyC,al
+sub Totalquantity,al
+add QuantityC,al
+
+mov removequantityC,0h
+jmp removeorder
+
+FailToRemove1:
+mov ah, 09h
+lea dx, newline
+int 21h
+lea dx, unexisted
+int 21h
+lea dx, newline
+int 21h
+
+jmp removechoice
+
+FailToRemove2:
+mov ah, 09h
+lea dx, newline
+int 21h
+lea dx, invalidmsg
+int 21h
+lea dx, newline
+int 21h
+
+mov ax,1000h
+
+cmp selectedvariable,1
+je removefishAFail
+cmp selectedvariable,2
+je removefishBFail
+cmp selectedvariable,3
+je removefishCFail
+
+removefishAFail:
+mov selectedvariable, 0
+je removechoice
+
+removefishBFail:
+mov selectedvariable, 0
+je removechoice
+
+removefishCFail:
+mov selectedvariable, 0
+je removechoice
+
+
+InvalidInput:
+mov ah, 09h
+lea dx, newline
+int 21h
+lea dx, invalidmsg
+int 21h
+lea dx, newline
+int 21h
+
+lea dx, prom2
+int 21h
+jmp InputQuantity
+
+OutOfStock:
+mov ah,09h
+lea dx, newline
+int 21h
+lea dx, outoforder
+int 21h
+jmp input
+
+
+
+Counter:
+mov ah,09h
+lea dx,newline
+int 21h
+
+lea dx,totalvalue
+int 21h
+
+mov QuantityDigit,0
+mov setQuantityDigit,0
+
+cmp totalquantity,10
+jge borrowdigitT
+jne singledigitT
+
+borrowdigitT: ;add 10
+mov al, CustomerBuyC
+mov setquantitydigit,al
+
+repeatsubT:
+add quantitydigit,1
+sub totalquantity,10
+cmp totalquantity,10
+jle norepeatsubT
+loop repeatsubT
+
+norepeatsubT:
+mov al, quantitydigit
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+mov al, totalquantity
+add al, 30h
+mov dl, al
+mov ah, 02h
+int 21h
+add totalquantity,10
+
+jmp counter2
+
+singledigitT:
+mov al, totalquantity
+add al, 30h        ; Convert to ASCII
+mov dl, al
+mov ah, 02h        ; Print single character
+int 21h
+
+jmp counter2
+
+
+counter2:
+
+mov ah,09h
+lea dx,totalprice
+int 21h
+lea dx,RM
+int 21h
+
+mov totalprice,0h
+
+;price * quantity
+mov al,PriceA
+mov bl,CustomerBuyA
+mul bl
+mov TotalpriceA,al
+
+mov al,PriceB
+mov bl,CustomerBuyB
+mul bl
+mov TotalpriceB,al
+
+mov al,PriceC
+mov bl,CustomerBuyC
+mul bl
+mov TotalpriceC,al
+
+mov al,TotalpriceA
+add al,TotalpriceB
+add al,TotalpriceC
+
+mov TotalTotalPrice,0h
+
+add TotalTotalPrice,al
+
+mov al,quantitydiscount
+
+cmp Totalquantity,al
+jge DiscountForQuantity
+jne NoQuantityDiscount
+
+DiscountForQuantity:
+sub TotalTotalPrice,20h ;Discount RM20
+mov DetectQuantityDiscount,1
+jmp AfterDiscountCalculating
+
+NoQuantityDiscount:
+mov DetectQuantityDiscount,0
+jmp AfterDiscountCalculating
+
+AfterDiscountCalculating:
+
+cmp isMember,1
+je MembershipDiscount
+jne SkipMembershipDiscount
+
+MembershipDiscount:
+sub TotalTotalPrice,20
+
+SkipMembershipDiscount:
+
+CalculatePrice:
+mov al, TotalTotalPrice       ; Load the number into AX
+lea si, TotalPriceDigits; SI points to the buffer
+add si, 3            ; Point SI to the last digit in the buffer (before '$')
+
+mov cx, 4            ; Loops for 4 digits
+
+convert_loop:
+xor dx, dx           ; Clear DX for division
+mov bx, 10           ; Base 10 for decimal
+div bx               ; Divide AX by 10: Quotient in AX, Remainder in DX
+add dl, '0'          ; Convert remainder to ASCII
+mov [si], dl         ; Store ASCII digit into the buffer
+dec si               ; Move SI to the previous digit
+loop convert_loop    ; Repeat
+
+mov ah, 09h
+lea dx, TotalPriceDigits
+int 21h
+
+mov ah,09h
+lea dx,decimalPrice
+int 21h
+
+cmp isMember,1
+je PrintMembership
+
+cmp TotalTotalPrice,50
+jle CounterInputWithoutAskingMembership
+
+;Print Membership Discount
+cmp isMember,1
+
+je PrintMembership
+jne SkipPrintMembership
+
+PrintMembership:
+mov ah,09h
+lea dx,MemberDis
+int 21h
+
+SkipPrintMembership:
+
+cmp DetectQuantityDiscount,1
+je printquantitydis
+jne noprintquantitydis
+
+printquantitydis:
+mov ah,09h
+lea dx,QuantityDis
+int 21h
+
+noprintquantitydis:
+mov ah,09h
+lea dx,payment
+int 21h
+
+lea dx,newline
+int 21h
+
+
+
+counterinput:
+
+mov ah,09h
+lea dx,newline
+int 21h
+
+
+mov ah,01h
+int 21h
+
+cmp al,"Y"
+je AskMembership1
+cmp al,"y"
+je AskMembership1
+;
+cmp al,"N"
+je menu
+cmp al,"n"
+je menu
+
+cmp al,"X"
+je removeorder
+cmp al,"x"
+je removeorder
+
+jne Unorder
+
+AskMembership1:
+
+cmp isMember,0
+je Askmembership2
+jne payprocess
+
+AskMembership2:
+mov ah,09h
+lea dx, memberships
+int 21h
+
+mov ah,01h
+int 21h
+
+cmp al,"Y"
+je YesMember
+cmp al,"y"
+je YesMember
+
+YesMember:
+mov isMember,1
+jmp ProceedOrder
+
+cmp al,"N"
+je Payprocess
+cmp al,"n"
+je Payprocess
+
+payprocess:
+mov ah,09h
+lea dx, newline
+int 21h
+lea dx, transaction
+int 21h
+
+mov ah,01h
+int 21h
+
+
+EndSection:
+mov ah,09h
+lea dx, newline
+int 21h
+lea dx, bye
+int 21h
+jmp RestartMenu
+
+
+CounterInputWithoutAskingMembership: ;Counter if TotalTotalPrice less than RM50
+mov ah,09h
+lea dx,newline
+int 21h
+
+mov ah,01h
+int 21h
+
+cmp al,"Y"
+je payprocess
+cmp al,"y"
+je payprocess
+;
+cmp al,"N"
+je menu
+cmp al,"n"
+je menu
+
+cmp al,"X"
+je removeorder
+cmp al,"x"
+je removeorder
+
+
+
+exit:
+MOV AX,4C00H
+INT 21H
+MAIN ENDP
+END MAIN
+
+;--THINGS TO DO--
+;Membership Discount, asking in ProceedOrder
+
+;--REMINDER--
+; 1. Two-or-more-digits numeric variable "PriceA db 40" shows other symbol, pain in the ass.
+
+;--Unused Variable--
+; 1. prom4
+; 2. prom5
+; 3. discount
+
+
+
+; [SOURCE]: C:\emu8086\MySource\assignment.asm
