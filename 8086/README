@@ -1,0 +1,13 @@
+This is an ordering system, programmed using Assembly.
+
+To run this project, please ensure ANY ONE emulator that supports 8086 Assembly is installed:
+
+- EMU8086 Emulator 
+  (Install from the website: https://emu8086-microprocessor-emulator.en.download.it/)
+
+- DOSBox
+- Any other x86/8086-compatible assembler or emulator
+
+Opening project in EMU8086:
+  1. Launch
+  2. C
